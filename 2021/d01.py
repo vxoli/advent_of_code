@@ -26,6 +26,6 @@ def part2(lines):
 	return counter
 
 
-input_data = read_data('/home/christopher/Documents/GitHub/adventofcode/2021/D01-input.txt')
+input_data = read_data('/home/christopher/Documents/GitHub/adventofcode/2021/d01-input.txt')
 print("Answer part 1: ", part1(input_data))
 print("Answer part 2: ", part2(input_data))
