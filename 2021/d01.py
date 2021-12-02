@@ -1,9 +1,10 @@
-# AoC 2021 D1
+# AoC 2021 D01
 
 def read_data(filename):
 	with open(filename) as file:
 		lines = list(map(int, file.readlines()))
 	file.close()
+
 	return lines
 
 
