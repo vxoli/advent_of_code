@@ -1,0 +1,1 @@
+ticket scanning error rate = 21996

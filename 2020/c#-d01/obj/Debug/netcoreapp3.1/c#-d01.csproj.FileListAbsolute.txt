@@ -1,0 +1,13 @@
+C:\Users\chris\OneDrive\Documents\GitHub\adventofcode2020\c#-d01\bin\Debug\netcoreapp3.1\c#-d01.exe
+C:\Users\chris\OneDrive\Documents\GitHub\adventofcode2020\c#-d01\bin\Debug\netcoreapp3.1\c#-d01.deps.json
+C:\Users\chris\OneDrive\Documents\GitHub\adventofcode2020\c#-d01\bin\Debug\netcoreapp3.1\c#-d01.runtimeconfig.json
+C:\Users\chris\OneDrive\Documents\GitHub\adventofcode2020\c#-d01\bin\Debug\netcoreapp3.1\c#-d01.runtimeconfig.dev.json
+C:\Users\chris\OneDrive\Documents\GitHub\adventofcode2020\c#-d01\bin\Debug\netcoreapp3.1\c#-d01.dll
+C:\Users\chris\OneDrive\Documents\GitHub\adventofcode2020\c#-d01\bin\Debug\netcoreapp3.1\c#-d01.pdb
+C:\Users\chris\OneDrive\Documents\GitHub\adventofcode2020\c#-d01\obj\Debug\netcoreapp3.1\c#-d01.csprojAssemblyReference.cache
+C:\Users\chris\OneDrive\Documents\GitHub\adventofcode2020\c#-d01\obj\Debug\netcoreapp3.1\c#-d01.AssemblyInfoInputs.cache
+C:\Users\chris\OneDrive\Documents\GitHub\adventofcode2020\c#-d01\obj\Debug\netcoreapp3.1\c#-d01.AssemblyInfo.cs
+C:\Users\chris\OneDrive\Documents\GitHub\adventofcode2020\c#-d01\obj\Debug\netcoreapp3.1\c#-d01.csproj.CoreCompileInputs.cache
+C:\Users\chris\OneDrive\Documents\GitHub\adventofcode2020\c#-d01\obj\Debug\netcoreapp3.1\c#-d01.dll
+C:\Users\chris\OneDrive\Documents\GitHub\adventofcode2020\c#-d01\obj\Debug\netcoreapp3.1\c#-d01.pdb
+C:\Users\chris\OneDrive\Documents\GitHub\adventofcode2020\c#-d01\obj\Debug\netcoreapp3.1\c#-d01.genruntimeconfig.cache

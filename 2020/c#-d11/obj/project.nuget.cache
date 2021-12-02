@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "EFSQWANKB+6O95dIaOh/NW8MDg92khHpxTMStpOVwxs6YbAvgSYphchyppNrn9FWppT5n8HM09INID1XqsxMIA==",
+  "success": true,
+  "projectFilePath": "/home/christopher/Documents/GitHub/adventofcode2020/c#-d11/c#-d11.csproj",
+  "expectedPackageFiles": [
+    "/home/christopher/.nuget/packages/microsoft.netcore.app.ref/3.1.0/microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
+    "/home/christopher/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.10/microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "/home/christopher/.nuget/packages/microsoft.netcore.app.host.linux-x64/3.1.16/microsoft.netcore.app.host.linux-x64.3.1.16.nupkg.sha512"
+  ],
+  "logs": []
+}

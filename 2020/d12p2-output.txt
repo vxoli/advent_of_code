@@ -1,0 +1,1 @@
+Manhatten distance is: 61616

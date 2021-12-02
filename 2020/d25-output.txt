@@ -1,0 +1,3 @@
+Card's Loopsize: 250288
+Door's Loopsize: 14519824
+Part 1: 11707042 (card -> door)

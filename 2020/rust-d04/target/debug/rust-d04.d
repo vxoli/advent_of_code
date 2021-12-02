@@ -1,0 +1,1 @@
+/home/christopher/Documents/GitHub/adventofcode2020/rust-d04/target/debug/rust-d04: /home/christopher/Documents/GitHub/adventofcode2020/d04-input.txt /home/christopher/Documents/GitHub/adventofcode2020/rust-d04/src/main.rs

@@ -1,0 +1,13 @@
+/home/christopher/Documents/code/adventofcode2020/c#-d08/obj/Debug/netcoreapp3.1/c#-d08.csprojAssemblyReference.cache
+/home/christopher/Documents/code/adventofcode2020/c#-d08/obj/Debug/netcoreapp3.1/c#-d08.AssemblyInfoInputs.cache
+/home/christopher/Documents/code/adventofcode2020/c#-d08/obj/Debug/netcoreapp3.1/c#-d08.AssemblyInfo.cs
+/home/christopher/Documents/code/adventofcode2020/c#-d08/obj/Debug/netcoreapp3.1/c#-d08.csproj.CoreCompileInputs.cache
+/home/christopher/Documents/code/adventofcode2020/c#-d08/bin/Debug/netcoreapp3.1/c#-d08
+/home/christopher/Documents/code/adventofcode2020/c#-d08/bin/Debug/netcoreapp3.1/c#-d08.deps.json
+/home/christopher/Documents/code/adventofcode2020/c#-d08/bin/Debug/netcoreapp3.1/c#-d08.runtimeconfig.json
+/home/christopher/Documents/code/adventofcode2020/c#-d08/bin/Debug/netcoreapp3.1/c#-d08.runtimeconfig.dev.json
+/home/christopher/Documents/code/adventofcode2020/c#-d08/bin/Debug/netcoreapp3.1/c#-d08.dll
+/home/christopher/Documents/code/adventofcode2020/c#-d08/bin/Debug/netcoreapp3.1/c#-d08.pdb
+/home/christopher/Documents/code/adventofcode2020/c#-d08/obj/Debug/netcoreapp3.1/c#-d08.dll
+/home/christopher/Documents/code/adventofcode2020/c#-d08/obj/Debug/netcoreapp3.1/c#-d08.pdb
+/home/christopher/Documents/code/adventofcode2020/c#-d08/obj/Debug/netcoreapp3.1/c#-d08.genruntimeconfig.cache

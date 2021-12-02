@@ -1,0 +1,2 @@
+earliest departure time: 1015297, delay: 5min, catch bus: 643
+answer = 3215
