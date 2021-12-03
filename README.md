@@ -2,4 +2,4 @@
 
 My attempts and solutions for the [Advent of Code](https://adventofcode.com/). 
 
-Files listed in fodlers by year.
+Files listed in folders by year.
