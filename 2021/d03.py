@@ -10,9 +10,9 @@ def read_data(filename):
 def part1(report):
 	
 	# count the frequency of 1's in each position
-	frequency = [0,0,0,0,0,0,0,0,0,0,0,0]
-	gamma = [0,0,0,0,0,0,0,0,0,0,0,0]
-	epsilon = [0,0,0,0,0,0,0,0,0,0,0,0]
+	frequency = [0] * (len(report[1].strip('\n')))
+	gamma = [0] * (len(report[1].strip('\n')))
+	epsilon = [0]  * (len(report[1].strip('\n')))
 
 	for line in report:
 		for number in range(0,len(line)-1):
@@ -26,8 +26,8 @@ def part1(report):
 	return gamma_value * epislon_value
 
 def part2(report):
-	oxygen_rating = list(report)
-	scrubber_rating = list(report)
+	oxygen_rating = report
+	scrubber_rating = report
 	for i in range(len(report[0])):
 		if len(oxygen_rating) > 1:
 			oxygen_rating0 = len([x for x in oxygen_rating if x[i] == '0'])
