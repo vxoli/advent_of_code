@@ -1,8 +1,5 @@
-# adventofcode
-![](advent-of-code.png)
+# Advent of code
 
 My attempts and solutions for the [Advent of Code](https://adventofcode.com/). 
 
-Files listed individually, and combined into Jupyter notebook.
-
-![](Screen-Shot.png)
+Files listed in fodlers by year.
