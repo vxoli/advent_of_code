@@ -17,6 +17,9 @@ def split_data(data): # split given data into game numbers and boards
 	board = [[0] * 7 for i in range(100)]
 	board_counter = 0
 
+	# need to clean numbers
+	game_numbers = game_numbers.split(',')
+
 	for index in range(len(board_numbers)):
 		if board_numbers[index] == '': 
 			board_counter += 1
@@ -31,12 +34,15 @@ def split_data(data): # split given data into game numbers and boards
 
 	return (game_numbers, board)
 
-def play_bingo():
+def play_bingo(bingo_numbers, bingo_baords):
 # an idea to play
 # if a number on board - that number knocked out or converted to 999 say
 # if an elemenet of list is all 999 - a row copleted
 # a nested for loop can check if columns all 999
 # if a solution found flag with board[1] set to true/ 1
+
+	for index in range(0,len(bingo_numbers),5):
+		print(bingo_numbers[index:index+5])	
 
 	return
 
@@ -44,4 +50,4 @@ input_data = read_data('/home/christopher/Documents/GitHub/adventofcode/2021/d04
 #split the given data in to game numbers drawn and boards
 (numbers, boards) = split_data(input_data)
 # play bingo
-play_bingo()
+play_bingo(numbers, boards)
