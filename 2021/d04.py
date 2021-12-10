@@ -32,6 +32,7 @@ def split_data(data): # split given data into game numbers and boards
 		# strip out spaces and double spaces (for single digit numbers) by converting ' ' and '  ' to '!' then strip '!'
 		board[board_counter][2 + index % 6] = list(board_numbers[index].replace('  ', '!').replace(' ','!').split('!'))	
 	print(board_counter)
+	print(game_numbers)
 	return (game_numbers, board)
 
 def play_bingo(bingo_numbers, bingo_boards):
@@ -46,8 +47,8 @@ def play_bingo(bingo_numbers, bingo_boards):
 		
 		# using board[1] to test
 		for board in range(0,100):
-			for row in range(2,7):
-				for number in numbers_to_call:
+			for number in numbers_to_call:
+				for row in range(2,7):
 					for board_num in bingo_boards[board][row]:
 						print(board, " ", row, ' ', number,' ', board_num, ' ', bingo_boards[board][row])
 						if board_num == '': continue #a board contained extra '' - unable to see why so this skips it - clumsy but works...
@@ -85,4 +86,5 @@ input_data = read_data('/home/christopher/Documents/GitHub/adventofcode/2021/d04
 #split the given data in to game numbers drawn and boards
 (numbers, boards) = split_data(input_data)
 # play bingo
-print("Winning score is: ", play_bingo(numbers, boards))
+print("Part 1: Winning score is: ", play_bingo(numbers, boards))
+print(numbers)
