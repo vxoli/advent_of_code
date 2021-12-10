@@ -52,5 +52,10 @@ def part1(coordinates):
 
 	return total
 
+def part2(coordinates):
+
+	return
+
 input_data = read_data('/home/christopher/Documents/GitHub/adventofcode/2021/d05-input.txt')
 print("Part 1: At how many points do at least two lines overlap? ", part1(input_data))
+part2(input_data)
