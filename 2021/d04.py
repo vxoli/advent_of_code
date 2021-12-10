@@ -31,8 +31,6 @@ def split_data(data): # split given data into game numbers and boards
 		board[board_counter][0] = board_counter
 		# strip out spaces and double spaces (for single digit numbers) by converting ' ' and '  ' to '!' then strip '!'
 		board[board_counter][2 + index % 6] = list(board_numbers[index].replace('  ', '!').replace(' ','!').split('!'))	
-	print(board_counter)
-	print(game_numbers)
 	return (game_numbers, board)
 
 def play_bingo(bingo_numbers, bingo_boards):
@@ -50,21 +48,16 @@ def play_bingo(bingo_numbers, bingo_boards):
 			for number in numbers_to_call:
 				for row in range(2,7):
 					for board_num in bingo_boards[board][row]:
-						print(board, " ", row, ' ', number,' ', board_num, ' ', bingo_boards[board][row])
 						if board_num == '': continue #a board contained extra '' - unable to see why so this skips it - clumsy but works...
 						if number == int(board_num):
-							print("Number: ",number, " in board row", bingo_boards[board][row])
 							bingo_boards[board][row] = ['999' if x == board_num else x for x in bingo_boards[board][row]]
-							print("Number: ",number, " in board ", bingo_boards[board][row])
 							# check if a row is all '999'
 							if bingo_boards[board][row] == ['999', '999', '999', '999', '999']:
-								print("BINGO row!")
 								return calulate_board_score(bingo_boards[board], number)
 
 							#check if a column is all '999'
 							for column in range(0,5):
 								if (bingo_boards[board][2][column] == '999') and (bingo_boards[board][3][column] == '999') and (bingo_boards[board][4][column] == '999') and (bingo_boards[board][5][column] == '999') and (bingo_boards[board][6][column] == '999'):
-									print('BINGO Column!')
 									return calulate_board_score(bingo_boards[board], number)
 
 
@@ -73,8 +66,6 @@ def play_bingo(bingo_numbers, bingo_boards):
 def calulate_board_score(complete_board, last_number_called):
 	# find sum of non-999 values
 	# multiply by last number called
-	print(complete_board)
-	print(last_number_called)
 	sum = 0
 	for row in range(2,7):
 		for col in range(0,5):
@@ -87,4 +78,3 @@ input_data = read_data('/home/christopher/Documents/GitHub/adventofcode/2021/d04
 (numbers, boards) = split_data(input_data)
 # play bingo
 print("Part 1: Winning score is: ", play_bingo(numbers, boards))
-print(numbers)
