@@ -77,20 +77,42 @@ def part2(coordinates):
 		x2 = int(line.split(' -> ')[1].split(',')[0])
 		y2 = int(line.split(' -> ')[1].split(',')[1])
 		if x1 == x2: # horizontal line
-			if y1 > y2: y1,y2 = y2,y1
+			print('HORIZONTAL')
 			for y in range(y1,y2+1):
 				map[x1][y] += 1
 		elif y1 == y2: # vertical line
+			print('VERTICAL')
 			if x1 > x2: x1,x2 = x2,x1
 			for x in range(x1,x2+1):
 				map[x][y1] += 1
 # 3. loop through diagonals
-		else: 
-			if y1 > y2: y1,y2 = y2,y1
-			if x1 > x2: x1,x2 = x2,x1
-			for x in range(x1,x2):
-				for y in range(y1,y2):
+		else:
+			x = x1
+			y = y1
+			if x1 < x2 and y1 < y2: 
+				print('DIAGONAL top Left to bottom Right')
+				while x <= x2 and y <= y2:
 					map[x][y] += 1
+					x += 1
+					y += 1
+			if x1 < x2 and y1 > y2:
+				print('DIAGONAL top right to bottom left')
+				while x <= x2 and y >= y2:
+					map[x][y] += 1
+					x += 1
+					y += -1
+			if x1 > x2 and y1 < y2:
+				print('DIAGONAL bottom left to top right')
+				while x >= x2 and y <= y2:
+					map[x][y] += 1
+					x += -1
+					y += 1
+			if x1 > x2 and y1 > y2: 
+				print('DIAGONAL bottom right to top left')
+				while x >= x2 and y >= y2:
+					map[x][y] += 1
+					x += -1
+					y += -1
 
 # 4. count number locations greater than 1
 	counter = 0
