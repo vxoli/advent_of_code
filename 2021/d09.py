@@ -4,34 +4,32 @@ def read_data(filename):
 	return data
 
 def part1(heightmap):
+#	heightmap = ['2199943210','3987894921','9856789892','8767896789','9899965678']
+
+## try this - what ive been trying to do...
+	rows = len(heightmap)-1
+	cols = len(heightmap[0])
+
 	risklevel = 0
-	heightmap = ['2199943210','3987894921','9856789892','8767896789','9899965678']
-	for line_index,line in enumerate(heightmap):
-		for char_index,char in enumerate(line):
-			height = int(char)
+	# Find low points
+	for row in range(rows):
+	    for col in range(cols):
+	        lowpoint = True
+	        for d in [(0, 1), (0, -1), (-1, 0), (1, 0)]:
+	            rr = row + d[0]
+	            cc = col + d[1]
 
-			offset_x = (-1,+1)
-			offset_y = (-1,+1)
+	            if not ((0 <= rr and rr < rows) and (0 <= cc and cc < cols)):
+	                continue
 
-			if line_index -1 < 0:
-				offset_y = (0,+1)
-			if line_index + 1 >= len(heightmap)-1:
-				offset_y = (0,-1)
-			if char_index -1 < 0:
-				offset_x = (+1,0)
-			if char_index + 1 >= len(line)-1:
-				offset_x = (-1,0)
+	            if int(heightmap[rr][cc]) <= int(heightmap[row][col]):
+	                lowpoint = False
+	                break
 
-			print(line_index,"---",offset_y,"---",offset_x)
-			height = int(char)
-			height_up = int(heightmap[line_index+offset_y[0]][char_index])
-			height_down = int(heightmap[line_index+offset_y[1]][char_index])
-			height_left = int(heightmap[line_index][char_index+offset_x[0]])
-			height_right = int(heightmap[line_index][char_index+offset_x[1]])
+	        if lowpoint:
+	            risklevel += int(heightmap[row][col]) + 1
 
-			if height < height_up and height < height_down and height < height_left and height < height_right:
-				print(height)
-				risklevel += height + 1
+
 
 	return risklevel
 
