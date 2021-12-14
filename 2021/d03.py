@@ -1,4 +1,5 @@
-# oxygen_ratingoC 2021 D03
+# AoC 2021 D03
+#--- Day 3: Binary Diagnostic ---
 
 def read_data(filename):
 	with open(filename) as file:
