@@ -1,4 +1,5 @@
 # AoC 2021 D01
+#--- Day 1: Sonar Sweep ---
 
 def read_data(filename):
 	with open(filename) as file:
