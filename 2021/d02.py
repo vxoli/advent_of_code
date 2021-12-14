@@ -1,4 +1,5 @@
 # AoC 2021 D02
+#--- Day 9: Smoke Basin ---
 
 def read_data(filename):
 	with open(filename) as file:
