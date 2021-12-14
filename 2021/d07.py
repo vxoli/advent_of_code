@@ -1,4 +1,5 @@
-#AoC 2021 d07.py
+#AoC 2021 d07
+#--- Day 7: The Treachery of Whales ---
 
 from statistics import mode, mean, median
 
