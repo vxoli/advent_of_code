@@ -1,4 +1,5 @@
 #Aoc 2021 d06
+#--- Day 6: Lanternfish ---
 
 def read_input(filename):
 	with open(filename) as file:
