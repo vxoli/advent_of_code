@@ -1,4 +1,5 @@
 # Aoc 2021 d04
+#--- Day 4: Giant Squid ---
 
 def read_data(filename):
 	with open(filename) as file:
