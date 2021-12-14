@@ -1,4 +1,5 @@
 #Aoc 2021 d08
+#--- Day 8: Seven Segment Search ---
 
 def read_data(filename):
 	with open(filename) as file:
