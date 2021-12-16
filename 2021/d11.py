@@ -1,39 +1,62 @@
-#Aoc 2021 d11
-#--- Day 11: Dumbo Octopus ---
+#d11-test.py
 
 def read_file(filename):
 	with open(filename) as file:
 		data = file.read().strip()
+	file.close()
+	data = data.split("\n")
+	data = [list(map(int, line)) for line in data]
 	return data
 
-def part1(octopus_map):
-	octopus_map = ["11111","19991","19191","19991","11111"]
-	new_octopus_map = []
-	flashes = 0
-	for row_index,row in enumerate(octopus_map):
-		new_octopus_map.append("")
-		for col_index,col in enumerate(row):
-			energy_level = int(col)
-			energy_level += 1
-			if energy_level > 9: #Octopus flashes and gives 1 energy to all 8 adjacent octopuses
-				flashes += 1
-				energy_level = 0
-				# update energy level of adjecent octopuses
-				for ajdacent in {(-1,-1), (-1,0), (-1,1), (0, -1), (0, 1), (1,-1), (1,0), (1,1)}:
-					# if OOB continue
-					if row_index + ajdacent[0] < 0: continue
-					if col_index + ajdacent[1] < 0: continue
-					if row_index + ajdacent[0] > len(octopus_map): continue
-					if col_index + ajdacent[1] > len(row): continue
-					octopus_map[row_index+ajdacent[0]] = octopus_map[row_index+ajdacent[0]][:col_index+ajdacent[1]] + str(int(octopus_map[row_index+ajdacent[0]][col_index+ajdacent[0]])+1) + octopus_map[row_index+ajdacent[0]][col_index+ajdacent[1]+1:]
-					if octopus_map[row_index+ajdacent[0]][col_index]					
-
-			new_octopus_map[row_index] = new_octopus_map[row_index] + str(energy_level)
-	octopus_map = new_octopus_map
-	print(octopus_map)
+def flash(octo_map,row,col):
+	global flashes
+	flashes += 1
+	for i in range(row-1,row+2):
+		for j in range(col-1,col+2):
+			if i == row and j == col: continue
+			if 0 <= i < len(octo_map) and 0 <= j < len(octo_map[i]):
+				octo_map[i][j] +=1
+				if octo_map[i][j] == 10:
+					flash(octo_map,i,j)
+					octo_map[i][j] += 1
 
 	return
 
-#main
+def step(octo_map):
+	for row in range(len(octo_map)):
+		for col in range(len(octo_map[row])):
+			octo_map[row][col] += 1
+			if octo_map[row][col] ==10:
+				flash(octo_map, row, col)
+				octo_map[row][col] += 1
+	for row in range(len(octo_map)):
+		for col in range(len(octo_map[1])):
+			if octo_map[row][col] > 9:
+				octo_map[row][col] = 0
+
+	step_counter = 0
+	row_sum = 0
+
+	return octo_map
+
+# Main
 input_data = read_file("/home/christopher/Documents/GitHub/adventofcode/2021/d11-input.txt")
-part1(input_data)
+
+flashes = 0
+
+for _ in range(100):
+	step(input_data)
+print("Part 1: How many total flashes are there after 100 steps? ",flashes)
+# if all have flashed = all will be zero
+# if all zero then sum of list will be zero
+input_data = read_file("/home/christopher/Documents/GitHub/adventofcode/2021/d11-input.txt")
+step_counter = 0
+while True:
+	step_counter += 1
+	row_sum = 0
+	step(input_data)
+	for row in input_data:
+		row_sum += sum(row)
+	if row_sum == 0:
+		print("Part 2: What is the first step during which all octopuses flash? ",step_counter)
+		break
