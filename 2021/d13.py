@@ -25,11 +25,77 @@ def generate_grid(coordinates):
 
 	return grid
 
+def fold_grid(fold_instruction, grid):
+	# split off "fold along "
+	fold_axis = fold_instruction[11:].split('=')[0]
+	fold_index = int(fold_instruction[11:].split('=')[1])
+
+	if fold_axis == 'y':
+		grid = fold_y(fold_index, grid)
+	if fold_axis == 'x':
+		grid = fold_x(fold_index, grid)
+
+
+	return grid
+
+def fold_y(fold_index, grid):
+	# y represents a horizontal line
+	# Because this is a horizontal line, fold the bottom half up. Some of the 
+	# dots might end up overlapping after the fold is complete, but dots will 
+	# never appear exactly on a fold line.
+
+	lines_below = len(grid) - fold_index - 1
+	for row in range(lines_below):
+		for col in range(len(grid[row])):
+			if grid[fold_index + row + 1][col] == "#":
+				grid[fold_index - row -1][col] = "#"
+
+	grid = grid[:fold_index] # drop folded lines off bottom of grid
+	return grid
+
+def fold_x(fold_index, grid):
+	#Because this is a vertical line, fold left:
+	lines_right = len(grid[0])-fold_index - 1
+
+	for row in range(len(grid)):
+		for col in range(lines_right):
+			if grid[row][fold_index+col+1] == '#':
+				grid[row][fold_index-col-1] = "#"
+
+	# # drop folded rows off from right of grid
+	grid = [row[:fold_index] for row in grid]
+	
+	
+	return grid
+
+def count_dots(grid):
+	total_dots = 0
+	for row in grid:
+		total_dots += row.count("#")
+
+	return total_dots
+
+
 # MAIN
 grid_data, fold_data = read_url()
-## TEST DATA
-grid_data = ['6,10','0,14','9,10','0,3','10,4','4,11','6,0','6,12','4,1','0,13','10,12','3,4','3,0','8,4','1,10','2,14','8,10','9,0']
-fold_data = ["old along y=7","fold along x=5"]
-## END TEST DATA
+# ## TEST DATA
+# grid_data = ['6,10','0,14','9,10','0,3','10,4','4,11','6,0','6,12','4,1','0,13','10,12','3,4','3,0','8,4','1,10','2,14','8,10','9,0']
+# fold_data = ["fold along y=7","fold along x=5"]
+# ## END TEST DATA
+
+# Part 1
 grid = generate_grid(grid_data)
-print(grid)
+grid = fold_grid(fold_data[0], grid)
+print("Part 1: How many dots are visible after completing just the first fold instruction on your transparent paper? ",count_dots(grid))
+
+# Part 2
+
+grid_data, fold_data = read_url()
+grid = generate_grid(grid_data)
+for fold in fold_data:
+	grid = fold_grid(fold, grid)
+print("Part 2: What code do you use to activate the infrared thermal imaging camera system?")
+for row in grid:
+	for char in row:
+		print(char, end="")
+	print("")
