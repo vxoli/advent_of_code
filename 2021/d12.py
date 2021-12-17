@@ -18,14 +18,28 @@ def read_url():
 	data = data.split("\n")
 	return data
 
-def count(node, visited = set()):
+def part1_count(node, visited = set()):
     if node == "end":
         return 1
     total = 0
     for next in edges[node]:
         if next in visited: continue
-        total += count(next, visited | {node} if node == node.lower() else visited)
+        total += part1_count(next, visited | {node} if node == node.lower() else visited)
     return total
+
+def part2_count(node, visited = set(), double_visit = False):
+    if node == "end":
+        return 1
+    total = 0
+    for next in edges[node]:
+    	if next == "start": continue
+    	if next in visited and double_visit: continue
+    	if next in visited:
+    		total += part2_count(next, visited | {node} if node == node.lower() else visited, True)
+    	else:
+    		total += part2_count(next, visited | {node} if node == node.lower() else visited, double_visit)
+    return total
+
 
 # MAIN
 input_data = read_url()
@@ -37,4 +51,5 @@ for line in input_data:
     edges[a] = edges.get(a, []) + [b]
     edges[b] = edges.get(b, []) + [a]
 
-print(count("start"))
+print("Part 1: How many paths through this cave system are there that visit small caves at most once? ", part1_count("start"))
+print("Part 2: How many paths through this cave system are there? ", part2_count("start"))
