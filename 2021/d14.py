@@ -32,7 +32,7 @@ def calculate_most_least(template):
 	max, min = 0,1000000000000000000
 	for key in res:
 		if res[key] > max: max = res[key]
-		if res[key] < min: min = res[key]
+		if res[key] < min: min = res[key]	
 
 	return max - min
 
