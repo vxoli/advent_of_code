@@ -25,8 +25,21 @@ def apply_rules(pairs, rules):
 		template_pairs[index] = insert_element(pair, element)
 	return ''.join(template_pairs)
 
+def calculate_most_least(template):
+	res = {}
+	for keys in template:
+		res[keys] = res.get(keys,0)+1
+	max, min = 0,1000000000000000000
+	for key in res:
+		if res[key] > max: max = res[key]
+		if res[key] < min: min = res[key]
+
+	return max - min
+
 #main
 template, rules = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2021/d14-input.txt')
 for i in range(10):
 	template_pairs = [i + j for i,j in zip(template, template[1:])]
 	template = apply_rules(template_pairs, rules)
+
+print("Part 1: What do you get if you take the quantity of the most common element and subtract the quantity of the least common element? ", calculate_most_least(template))
