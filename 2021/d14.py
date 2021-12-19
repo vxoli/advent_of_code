@@ -39,9 +39,19 @@ def calculate_most_least(template):
 	return maximum - minimum
 
 #main
+# Part One
 template, rules = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2021/d14-input.txt')
 for i in range(10):
 	template_pairs = [i + j for i,j in zip(template, template[1:])]
 	template = apply_rules(template_pairs, rules)
 	
 print("Part 1: What do you get if you take the quantity of the most common element and subtract the quantity of the least common element? ", calculate_most_least(template))
+
+# Part Two
+template, rules = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2021/d14-input.txt')
+for i in range(40):
+	print(i," --- ", len(template))
+	template_pairs = [i + j for i,j in zip(template, template[1:])]
+	template = apply_rules(template_pairs, rules)
+	
+print("Part 2: What do you get if you take the quantity of the most common element and subtract the quantity of the least common element? ", calculate_most_least(template))
