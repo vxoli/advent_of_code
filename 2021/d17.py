@@ -8,9 +8,17 @@ def read_url(url):
 	data = file.read().strip()
 	data = data.decode("utf8")
 	data = data.split("\n")
-	return data[0]
+	data = data[0][len("target area: x="):]
+	data = data.split(", y=")
+
+	x_range = (int(data[0][:data[0].index("..")]),
+		int(data[0][data[0].index("..")+2:]) )
+	y_range = (int(data[1][:data[1].index("..")]),
+		int(data[1][data[1].index("..")+2:]) )
+
+	return (x_range, y_range)
 
 
 # MAIN
-input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2021/d17-input.txt')
-print(input)
+target = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2021/d17-input.txt')
+print(target)
