@@ -13,11 +13,10 @@ def read_url(url):
 	return algorythm, image_data
 
 def detect_pixels(row,col,image_data, rows, cols):
-	offset = [(-1,-1),(0,-1),(1,-1),(0,-1),(0,0),(0,1),(-1,1),(0,1),(1,1)]
-	pixel_data = [[".",".","."],[".",".","."],[".",".","."]]
+	offset = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,0),(0,1),(1,-1),(1,0),(1,1)]
+	pixel_data = [["","",""],["","",""],["","",""]]
 
 	for delta in offset:
-		print(delta)
 		dx = delta[0]
 		dy = delta[1]
 		pixel = "."
@@ -28,8 +27,15 @@ def detect_pixels(row,col,image_data, rows, cols):
 
 		# print(row+dy,"--",col+dx,"-- ",image_data[row+dy][col+dx])
 		pixel_data[dx+1][dy+1] = pixel
-	print(pixel_data)
-	return #pixel_data
+
+	return parse_to_binary( pixel_data[0]+pixel_data[1]+pixel_data[2])
+
+def parse_to_binary(pixel_data):
+	bin_str = ""
+	for char in pixel_data:
+		if char == ".": bin_str += "0"
+		if char == "#": bin_str += "1"
+	return bin_str
 
 
 # MAIN
@@ -51,4 +57,5 @@ cols = len(image_data[0])
 for col in range(cols):
 	for row in range(rows):
 # detect surrounding
-		pixel_map = detect_pixels(row,col, image_data, rows, cols)
+		pixel_binary = detect_pixels(row,col, image_data, rows, cols)
+		print(pixel_binary)
