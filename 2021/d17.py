@@ -67,16 +67,8 @@ for x in range(target[0][0],target[0][1]):
 		target_area.add((x,y))
 posn = (0,0)
 
-# while True:
-# 	steps = steps_for_dy(dy)
-# 	if dy < -100: break
-# 	if hit_target(steps):
-# 		print("What is the highest y position it reaches on this trajectory? ",sum(range(1,dy+1)))
-# 		break
-# 	dy -= 1
 
 print("What is the highest y position it reaches on this trajectory? ",part1(dy))
-
 
 
 
