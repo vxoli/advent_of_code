@@ -61,7 +61,7 @@ while True:
 	steps = steps_for_dy(dy)
 	if dy < -100: break
 	if hit_target(steps):
-		print(sum(range(1,dy+1)))
+		print("What is the highest y position it reaches on this trajectory? ",sum(range(1,dy+1)))
 		break
 	dy -= 1
 
