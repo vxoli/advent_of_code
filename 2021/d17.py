@@ -50,6 +50,15 @@ miny = target[1][0]
 maxy = target[1][1]
 dy = abs(miny)
 
+def part1(dy):
+	while True:
+		steps = steps_for_dy(dy)
+		if dy < -100: break
+		if hit_target(steps): break
+		dy -= 1
+	return sum(range(1,dy+1))
+
+
 # set of points in the range
 start=(0,0)
 target_area = set()
@@ -57,14 +66,16 @@ for x in range(target[0][0],target[0][1]):
 	for y in range(target[1][0],target[1][1]):
 		target_area.add((x,y))
 posn = (0,0)
-while True:
-	steps = steps_for_dy(dy)
-	if dy < -100: break
-	if hit_target(steps):
-		print("What is the highest y position it reaches on this trajectory? ",sum(range(1,dy+1)))
-		break
-	dy -= 1
 
+# while True:
+# 	steps = steps_for_dy(dy)
+# 	if dy < -100: break
+# 	if hit_target(steps):
+# 		print("What is the highest y position it reaches on this trajectory? ",sum(range(1,dy+1)))
+# 		break
+# 	dy -= 1
+
+print("What is the highest y position it reaches on this trajectory? ",part1(dy))
 
 
 
