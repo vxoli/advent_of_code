@@ -42,13 +42,18 @@ def hit_target(step):
 	return False
 
 
-# MAIN
-target = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2021/d17-input.txt')
-minx = target[0][0]
-maxx = target[0][1]
-miny = target[1][0]
-maxy = target[1][1]
-dy = abs(miny)
+def hit_target_part2(step):
+	total = set()
+	for dx in range(0, maxx+1):
+		x=0
+		odx = dx
+		for _ in range(step):
+			x += dx
+			if dx > 0:
+				dx -= 1
+		if minx <= x <= maxx:
+			total.add(odx)
+		return total
 
 def part1(dy):
 	while True:
@@ -59,6 +64,15 @@ def part1(dy):
 	return sum(range(1,dy+1))
 
 
+# MAIN
+target = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2021/d17-input.txt')
+minx = target[0][0]
+maxx = target[0][1]
+miny = target[1][0]
+maxy = target[1][1]
+dy = abs(miny)
+
+
 # set of points in the range
 start=(0,0)
 target_area = set()
@@ -67,10 +81,16 @@ for x in range(target[0][0],target[0][1]):
 		target_area.add((x,y))
 posn = (0,0)
 
-
 print("What is the highest y position it reaches on this trajectory? ",part1(dy))
 
+total = 0
+for dy in range(miny-1, -miny+1):
+	iter = set()
+	for step in steps_for_dy(dy):
+		iter |= hit_target_part2(step)
+	total += len(iter)
 
+print(total)
 
 
 ## ??Useful?? formulae:
