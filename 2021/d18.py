@@ -14,4 +14,4 @@ def read_url(url):
 
 # MAIN
 data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2021/d18-input.txt')
-print(data)
+
