@@ -35,14 +35,23 @@ def parse_to_binary(pixel_data):
 	for char in pixel_data:
 		if char == ".": bin_str += "0"
 		if char == "#": bin_str += "1"
-	return bin_str
+	return int(bin_str, base=2)
+
+def enhance_image(image_data, rows, cols):
+	new_image = [[""]*rows]*cols
+	for col in range(cols):
+		for row in range(rows):
+		# detect surrounding
+			pixel_value = detect_pixels(row,col, image_data, rows, cols)
+			image_enhancement_char = algorythm[pixel_value]
+			new_image[row][col] = image_enhancement_char
+	return new_image
 
 
 # MAIN
 algorythm, image_data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2021/d20-input.txt')
 #TEST DATA
 image_data = ['#..#.','#....','##..#','..#..','..###']
-
 rows = len(image_data)
 cols = len(image_data[0])
 
@@ -51,11 +60,12 @@ cols = len(image_data[0])
 # determine binary number
 # apply algorythm
 # generate new image with result
-# remember oob pixels = "." or 0
+# remember OutOfBound pixels = "." or 0
+
+# have to adjust algorythm so image can grow and be infinite in size
 
 
-for col in range(cols):
-	for row in range(rows):
-# detect surrounding
-		pixel_binary = detect_pixels(row,col, image_data, rows, cols)
-		print(pixel_binary)
+new_image = enhance_image(enhance_image(image_data, rows, cols), rows, cols)
+total = 0
+for char in new_image:
+	print(char)
