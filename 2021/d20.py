@@ -38,7 +38,7 @@ def parse_to_binary(pixel_data):
 	return int(bin_str, base=2)
 
 def enhance_image(image_data, rows, cols):
-	new_image = [[""]*rows]*cols
+	new_image = [["."]*(cols+1)]*(rows+1)
 	for col in range(cols):
 		for row in range(rows):
 		# detect surrounding
