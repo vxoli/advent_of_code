@@ -12,10 +12,7 @@ def read_url(url):
 	return (int(data[0][28:]), int(data[1][28:]))
 
 # Main
-player1_start, player2_start = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2021/d21-input.txt')
-# Test Data
-player1_pos = 4
-player2_pos = 8
+player1_pos, player2_pos = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2021/d21-input.txt')
 player1_score = 0
 player2_score = 0
 dice = 1
