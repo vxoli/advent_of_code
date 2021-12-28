@@ -19,18 +19,22 @@ player2_pos = 8
 player1_score = 0
 player2_score = 0
 dice = 1
+rolls = 0
 while player1_score < 1000 and player2_score < 1000:
-	player1_pos += dice + dice + 1 + dice + 2 #(3*dice + 3)
-	if player1_pos > 10: player1_pos = player1_pos % 10
+	for _ in range(3):
+		player1_pos += dice % 10
+		if player1_pos > 10: player1_pos = player1_pos % 10
+		dice = ((dice) % 100) + 1
+		rolls += 1
 	player1_score += player1_pos
-	dice += 3
-#	if dice > 100: dice -= 100
-	print(player1_pos, "---", player2_pos, "---", dice)
-	player2_pos += dice + dice + 1 + dice + 2
-	if player2_pos > 10: player2_pos = player2_pos % 10
+	if player1_score >= 1000: break
+	for _ in range(3):
+		player2_pos += dice % 10
+		if player2_pos > 10: player2_pos = player2_pos % 10
+		dice = ((dice) % 100) + 1
+		rolls += 1
 	player2_score += player2_pos
-	dice += 3
-#	if dice > 100: dice -= 100
-	print(player1_pos, "---", player1_score, "---", player2_pos, "---",player2_score, "---", dice)
+	if player2_score >= 1000: break
 
-print(player1_score, "---", player2_score)
+losing_score = (player1_score>player2_score)* player2_score + (player2_score>player1_score)* player1_score
+print("Part 1: ",rolls, "rolls * loser score = ",rolls * losing_score)
