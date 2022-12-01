@@ -29,11 +29,13 @@ def part_2(data):
         if line != '\n':
             calories += int(line)
         if line == '\n':
-            calorie_list.append(calories)     
+            calorie_list.append(calories)
+            calorie_list.sort(reverse = True)
+            calorie_list = calorie_list[:3]
             calories = 0
     
-    calorie_list.sort(reverse=True)
-    return sum(calorie_list[:3])
+#    calorie_list.sort(reverse=True)
+    return sum(calorie_list)
 
 
 #Read in data textfile
