@@ -1,4 +1,6 @@
---- Day 1: Calorie Counting ---
+# Day 1: Calorie Counting
+
+## --- Part One ---
 
 Santa's reindeer typically eat regular reindeer food, but they need a lot of magical energy to deliver presents on Christmas. For that, their favorite snack is a special type of star fruit that only grows deep in the jungle. The Elves have brought you on their annual expedition to the grove where the fruit grows.
 
@@ -12,18 +14,18 @@ The Elves take turns writing down the number of Calories contained by the variou
 
 For example, suppose the Elves finish writing their items' Calories and end up with the following list:
 
-1000
-2000
-3000
+1000  
+2000  
+3000  
 
-4000
+4000  
 
-5000
-6000
+5000  
+6000  
 
-7000
-8000
-9000
+7000  
+8000  
+9000  
 
 10000
 
@@ -41,11 +43,12 @@ Find the Elf carrying the most Calories. How many total Calories is that Elf car
 
 To begin, get your puzzle input.
 
-Answer:
+**Answer:**
 Your puzzle answer was 71780.
 
 The first half of this puzzle is complete! It provides one gold star: *
---- Part Two ---
+
+## --- Part Two ---
 
 By the time you calculate the answer to the Elves' question, they've already realized that the Elf carrying the most Calories of food might eventually run out of snacks.
 
@@ -55,6 +58,7 @@ In the example above, the top three Elves are the fourth Elf (with 24000 Calorie
 
 Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?
 
+**Answer:**
 Your puzzle answer was 212489.
 
 Both parts of this puzzle are complete! They provide two gold stars: **
