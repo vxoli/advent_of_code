@@ -1,6 +1,16 @@
 # AoC 2022 D01
 # Counting Calories
 
+import urllib.request
+
+def read_url(url):
+	file = urllib.request.urlopen(url)
+	data = file.read().strip()
+	data = data.decode("utf8")
+	data = data.split("\n")
+	
+	return data
+
 def read_data(filename):
 	with open(filename) as file:
 		lines = list(map(str, file.readlines()))
@@ -46,3 +56,4 @@ print("Part 1: Find the Elf carrying the most Calories. How many total Calories 
 
 # part two
 print('Part 2: Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?', part_2(input_data))
+
