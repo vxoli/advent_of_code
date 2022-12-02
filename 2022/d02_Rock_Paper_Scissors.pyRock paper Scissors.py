@@ -47,8 +47,11 @@ def part_1(plays):
         if result == "lose":
             score += (my_play == "X") * 1 + (my_play == "Y") * 2 + (my_play == 'Z') * 3
 
-
     return score
 
+def Part_2(plays):
+
+    return
+
 input_data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d02-input.txt')
-print(part_1(input_data))
+print("Part 1: What would your total score be if everything goes exactly according to your strategy guide?", part_1(input_data))
