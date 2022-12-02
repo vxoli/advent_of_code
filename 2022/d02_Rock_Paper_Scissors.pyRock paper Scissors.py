@@ -1,12 +1,22 @@
 # D02 AoC 2022 Rock paper Scissors
 
-def read_data(filename):
-	with open(filename) as file:
-		lines = list(map(str, file.readlines()))
-	file.close()
+import urllib.request
 
-	return lines
+def read_url(url):
+	file = urllib.request.urlopen(url)
+	data = file.read().strip()
+	data = data.decode("utf8")
+	data = data.split("\n")
+	
+	return data
 
+def part_1(plays):
+    for play in plays:
+        elf_play = play.split()[0]
+        my_play = play.split()[1]
+        print(play.split()[1])
+    
+    return
 
-input = read_data('/home/christopher-spectre/Documents/code/adventofcode/2022/d02-input.txt')
-print(input)
+input_data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d02-input.txt')
+print(part_1(input_data))
