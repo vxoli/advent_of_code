@@ -50,6 +50,34 @@ def part_1(plays):
     return score
 
 def Part_2(plays):
+    core = 0
+    for play in plays:
+        elf_play = play.split()[0]
+        # A = Rock B = Paper C = Scissors
+        result = play.split()[1]
+        # X = lose Y = tie Z = win
+
+        if elf_play == "A":
+            if result == "X":
+                my_play = "C"
+            if result == "Y":
+                my_play = "A"
+            if result == "Z":
+                my_play = "B"
+        if elf_play == "B":
+            if result == "X":
+                my_play = "A"
+            if result == "Y":
+                my_play = "B"
+            if result == "Z":
+                my_play = "C"
+        if elf_play == "C":
+            if result == "X":
+                my_play = "B"
+            if result == "Y":
+                my_play = "C"
+            if result == "Z":
+                my_play = "A"
 
     return
 
