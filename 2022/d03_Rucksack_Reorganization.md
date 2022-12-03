@@ -66,5 +66,8 @@ Priorities for these items must still be found to organize the sticker attachmen
 
 Find the item type that corresponds to the badges of each three-Elf group. What is the sum of the priorities of those item types?
 
-Answer: 
+Answer: 2758
  
+Your puzzle answer was 2758.
+
+Both parts of this puzzle are complete! They provide two gold stars: **
