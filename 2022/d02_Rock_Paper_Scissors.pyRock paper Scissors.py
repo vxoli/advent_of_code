@@ -49,8 +49,8 @@ def part_1(plays):
 
     return score
 
-def Part_2(plays):
-    core = 0
+def part_2(plays):
+    score = 0
     for play in plays:
         elf_play = play.split()[0]
         # A = Rock B = Paper C = Scissors
@@ -79,7 +79,16 @@ def Part_2(plays):
             if result == "Z":
                 my_play = "A"
 
-    return
+        if result == "Z":
+            score += 6 + (my_play == "A") * 1 + (my_play == "B") * 2 + (my_play == 'C') * 3
+        if result == "Y":
+            score += 3 + (my_play == "A") * 1 + (my_play == "B") * 2 + (my_play == 'C') * 3
+        if result == "X":
+            score += (my_play == "A") * 1 + (my_play == "B") * 2 + (my_play == 'C') * 3
+
+
+    return score
 
 input_data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d02-input.txt')
 print("Part 1: What would your total score be if everything goes exactly according to your strategy guide?", part_1(input_data))
+print("Part 2: Following the Elf's instructions for the second column, what would your total score be if everything goes exactly according to your strategy guide?", part_2(input_data))
