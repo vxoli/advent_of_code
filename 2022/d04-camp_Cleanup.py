@@ -18,25 +18,14 @@ def part_1(data):
         elf1_assigned = ""
         elf2_assigned = ""
         elf1,elf2 = pair.split(',')
-        elf1_start,elf1_end = elf1.split('-')
-        elf2_start,elf2_end = elf2.split('-')
+        elf1_start,elf1_end = map(int, elf1.split('-'))
+        elf2_start,elf2_end = map(int, elf2.split('-'))
 
-        #generate list of assigned area IDs
-        for i in range(int(elf1_start),int(elf1_end)+1):
-            elf1_assigned += str(i)+'-'
-        for i in range(int(elf2_start), int(elf2_end)+1):
-            elf2_assigned += str(i)+'-'
-        elf1_assigned, elf2_assigned = elf1_assigned[:-1], elf2_assigned[:-1]
-        print(elf1,"   ",elf2)
-        print(elf1_assigned,"\n",elf2_assigned)
-        print((elf1_assigned in elf2_assigned) or (elf2_assigned in elf1_assigned))
-
-        # check if one assigned list contained within the other
-        #if (elf1_assigned in elf2_assigned) or (elf2_assigned in elf1_assigned):
-        #    counter += 1
-        counter += (elf1_assigned in elf2_assigned) + (elf2_assigned in elf1_assigned)
+        # the areas IDs will be contained if 1_start >= 2_start and 1_end <= 2_end and vice veras
+        if elf1_start >= elf2_start and elf1_end <= elf2_end or elf2_start >= elf1_start and elf2_end <= elf1_end:
+            counter += 1
 
     return counter
 
 data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d04-input.txt')
-print(part_1(data))
+print("Part 1: In how many assignment pairs does one range fully contain the other?",part_1(data))
