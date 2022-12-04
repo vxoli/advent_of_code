@@ -10,3 +10,5 @@ def read_url(url):
 	data = data.split("\n")
 	
 	return data
+
+data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d04-input.txt')
