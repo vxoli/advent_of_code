@@ -1,7 +1,6 @@
 # AoC 2022
 # --- Day 4: Camp Cleanup ---
 import urllib.request
-import string
 
 def read_url(url):
 	file = urllib.request.urlopen(url)
