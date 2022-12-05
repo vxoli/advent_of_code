@@ -102,5 +102,9 @@ In this example, the CrateMover 9001 has put the crates in a totally different o
 
 Before the rearrangement process finishes, update your simulation so that the Elves know where they should stand to be ready to unload the final supplies. After the rearrangement procedure completes, what crate ends up on top of each stack?
 
-Answer: 
+**Answer: RGLVRCQSB**
+
+Your puzzle answer was RGLVRCQSB.
+
+Both parts of this puzzle are complete! They provide two gold stars: **
 
