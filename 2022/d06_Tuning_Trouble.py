@@ -33,7 +33,6 @@ def part_2(data):
 	for i, character in enumerate(buffer[13:]): #start loop at 14th letter
 		position = i + 13
 		marker = buffer[position-13:position+1]
-		print(marker)
 		# check if letters repeated in marker - 
 		a = list(set(marker))
 		b = list(marker)
@@ -41,13 +40,8 @@ def part_2(data):
 		b.sort()
 		if a == b:
 			return position + 1 
-
-
-
-
-
 	return
 
 data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d06-input.txt')
 print('Part 1: How many characters need to be processed before the first start-of-message marker is detected?',part_1(data))
-print(part_2(data))
+print('Part 2: How many characters need to be processed before the first start-of-message marker is detected?',part_2(data))
