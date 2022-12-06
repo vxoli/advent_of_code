@@ -11,37 +11,20 @@ def read_url(url):
 	
 	return data
 
-def part_1(data):
+def find_marker(data, num):
 	buffer = data[0]
 	marker = ""
-	for i, character in enumerate(buffer[3:]): #start loop at 4th letter
-		position = i + 3
-		marker = buffer[position-3:position+1]
+	num -= 1
+	for i, character in enumerate(buffer[num:]): #start loop at 14th letter
+		position = i + num
+		marker = buffer[position-num:position+1]
 		# check if letters repeated in marker - 
-		a = list(set(marker))
-		b = list(marker)
-		a.sort()
-		b.sort()
-		if a == b:
+		if len(set(marker)) == len(marker):
 			return position + 1 
-
 	return
 
-def part_2(data):
-	buffer = data[0]
-	marker = ""
-	for i, character in enumerate(buffer[13:]): #start loop at 14th letter
-		position = i + 13
-		marker = buffer[position-13:position+1]
-		# check if letters repeated in marker - 
-		a = list(set(marker))
-		b = list(marker)
-		a.sort()
-		b.sort()
-		if a == b:
-			return position + 1 
 	return
 
 data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d06-input.txt')
-print('Part 1: How many characters need to be processed before the first start-of-message marker is detected?',part_1(data))
-print('Part 2: How many characters need to be processed before the first start-of-message marker is detected?',part_2(data))
+print('Part 1: How many characters need to be processed before the first start-of-message marker is detected?',find_marker(data,4))
+print('Part 2: How many characters need to be processed before the first start-of-message marker is detected?',find_marker(data,14))
