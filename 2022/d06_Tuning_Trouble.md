@@ -8,9 +8,9 @@ However, because he's heard you have significant experience dealing with signal-
 
 As if inspired by comedic timing, the device emits a few colorful sparks.
 
-To be able to communicate with the Elves, the device needs to lock on to their signal. The signal is a series of seemingly-random characters that the device receives one at a time.
+To be able to communicate with the Elves, the device needs to **lock on to their signal**. The signal is a series of seemingly-random characters that the device receives one at a time.
 
-To fix the communication system, you need to add a subroutine to the device that detects a start-of-packet marker in the datastream. In the protocol being used by the Elves, the start of a packet is indicated by a sequence of four characters that are all different.
+To fix the communication system, you need to add a subroutine to the device that detects a **start-of-packet marker** in the datastream. In the protocol being used by the Elves, the start of a packet is indicated by a sequence of **four characters that are all different**.
 
 The device will send your subroutine a datastream buffer (your puzzle input); your subroutine needs to identify the first position where the four most recently received characters were all different. Specifically, it needs to report the number of characters from the beginning of the buffer to the end of the first such four-character marker.
 
@@ -27,7 +27,7 @@ bvwbjplbgvbhsrlpgdmjqwftvncz: first marker after character 5
 nppdvjthqldpwncqszvftbrmjlhg: first marker after character 6  
 nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg: first marker after character 10  
 zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw: first marker after character 11  
-How many characters need to be processed before the first start-of-packet marker is detected?  
+**How many characters need to be processed before the first start-of-packet marker is detected?**
 
 To begin, get your puzzle input.
 
