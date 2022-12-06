@@ -14,7 +14,7 @@ def read_url(url):
 def part_1(data):
 	buffer = data[0]
 	marker = ""
-	for i, character in enumerate(buffer[3:2000]): #start loop at 4th letter
+	for i, character in enumerate(buffer[3:]): #start loop at 4th letter
 		position = i + 3
 		marker = buffer[position-3:position+1]
 		# check if letters repeated in marker - 
@@ -27,5 +27,27 @@ def part_1(data):
 
 	return
 
+def part_2(data):
+	buffer = data[0]
+	marker = ""
+	for i, character in enumerate(buffer[13:]): #start loop at 14th letter
+		position = i + 13
+		marker = buffer[position-13:position+1]
+		print(marker)
+		# check if letters repeated in marker - 
+		a = list(set(marker))
+		b = list(marker)
+		a.sort()
+		b.sort()
+		if a == b:
+			return position + 1 
+
+
+
+
+
+	return
+
 data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d06-input.txt')
 print('Part 1: How many characters need to be processed before the first start-of-message marker is detected?',part_1(data))
+print(part_2(data))

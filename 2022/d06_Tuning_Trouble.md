@@ -31,4 +31,29 @@ zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw: first marker after character 11
 
 To begin, get your puzzle input.
 
-Answer: 
+**Answer: 1833**
+
+Your puzzle answer was 1833.
+
+The first half of this puzzle is complete! It provides one gold star: *
+
+## --- Part Two ---
+Your device's communication system is correctly detecting packets, but still isn't working. It looks like it also needs to look for messages.
+
+A start-of-message marker is just like a start-of-packet marker, except it consists of 14 distinct characters rather than 4.
+
+Here are the first positions of start-of-message markers for all of the above examples:
+
+mjqjpqmgbljsphdztnvjfqwrcgsmlb: first marker after character 19  
+bvwbjplbgvbhsrlpgdmjqwftvncz: first marker after character 23  
+nppdvjthqldpwncqszvftbrmjlhg: first marker after character 23  
+nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg: first marker after character 29  
+zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw: first marker after character 26  
+How many characters need to be processed before the first start-of-message marker is detected?
+
+**Answer: 3425**
+
+Your puzzle answer was 3425.
+
+Both parts of this puzzle are complete! They provide two gold stars: **
+
