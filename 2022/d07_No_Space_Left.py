@@ -33,4 +33,4 @@ def part_1(data):
 
 
 data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d07-input.txt')
-print(part_1(data))
+print('Part 1: Find all of the directories with a total size of at most 100000. What is the sum of the total sizes of those directories?',part_1(data))
