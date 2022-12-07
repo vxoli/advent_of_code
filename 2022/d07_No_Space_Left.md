@@ -4,12 +4,15 @@ You can hear birds chirping and raindrops hitting leaves as the expedition proce
 
 The device the Elves gave you has problems with more than just its communication system. You try to run a system update:
 
+~~~
 $ system-update --please --pretty-please-with-sugar-on-top  
 Error: No space left on device  
+~~~
 Perhaps you can delete some files to make space for the update?
 
 You browse around the filesystem to assess the situation and save the resulting terminal output (your puzzle input). For example:
 
+~~~
 $ cd /  
 $ ls  
 dir a  
@@ -33,6 +36,7 @@ $ ls
 8033020 d.log  
 5626152 d.ext  
 7214296 k  
+~~~
 The filesystem consists of a tree of files (plain data) and directories (which can contain other directories or files). The outermost directory is called /. You can navigate around the filesystem, moving into or out of directories and listing the contents of the directory you're currently in.
 
 Within the terminal output, lines that begin with $ are commands you executed, very much like some modern computers:
@@ -46,6 +50,7 @@ ls means list. It prints out all of the files and directories immediately contai
 dir xyz means that the current directory contains a directory named xyz.  
 Given the commands and output in the example above, you can determine that the filesystem looks visually like this:  
 
+~~~
 - / (dir)
   - a (dir)
     - e (dir)
@@ -60,7 +65,7 @@ Given the commands and output in the example above, you can determine that the f
     - d.log (file, size=8033020)
     - d.ext (file, size=5626152)
     - k (file, size=7214296)
-
+~~~
 Here, there are four directories: / (the outermost directory), a and d (which are in /), and e (which is in a). These directories also contain files of various sizes.
 
 Since the disk is full, your first step should probably be to find directories that are good candidates for deletion. To do this, you need to determine the total size of each directory. The total size of a directory is the sum of the sizes of the files it contains, directly or indirectly. (Directories themselves do not count as having any intrinsic size.)
