@@ -13,7 +13,7 @@ def read_url(url):
 	
 	return data
 
-def part_1(data):
+def solver(data): # part1 and 2 solutions returned in tuple as working similar except for calculating result
 	sizes = defaultdict(int)
 	stack = []
 	for line in data:
@@ -29,8 +29,9 @@ def part_1(data):
 				for path in accumulate(stack, func=lambda a,b: a+"/"+b):
 					sizes[path] += int(size)
 			
-	return (sum(size for size in sizes.values() if size <= 100000))
+	return (sum(size for size in sizes.values() if size <= 100000)),(min(size for size in sizes.values() if size >= sizes['/'] - 40000000))
 
 
 data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d07-input.txt')
-print('Part 1: Find all of the directories with a total size of at most 100000. What is the sum of the total sizes of those directories?',part_1(data))
+print('Part 1: Find all of the directories with a total size of at most 100000. What is the sum of the total sizes of those directories?',solver(data)[0])
+print('Part 2: Find the smallest directory that, if deleted, would free up enough space on the filesystem to run the update. What is the total size of that directory?', solver(data)[1])
