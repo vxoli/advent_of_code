@@ -18,20 +18,21 @@ def part_1(grid):
             if row -1 <0 or col -1 < 0 or row == len(grid)-1 or col == len(grid[0])-1: #tree is on the edge and so is visable
                 vis_grid[row][col]='V'
                 continue
-            if  grid[row][col]> grid[row-1][col] and vis_grid[row-1][col]=='V': # visable from left
-                vis_grid[row][col]='V'
-            if grid[row][col] > grid[row][col-1] and vis_grid[row][col-1]=='V': #visable from above
-                vis_grid[row][col]='V'
-            if grid[row][col] < grid[row+1][col] and vis_grid[row+1][col] == 'V': #visable from right
-                vis_grid[row][col]='V'
-            if grid[row][col] < grid[row][col+1] and vis_grid[row][col+1] == 'V': #visable from right
-                vis_grid[row][col]='V'
+            # if  grid[row][col]> grid[row-1][col] and vis_grid[row-1][col]=='V': # visable from left
+            #     vis_grid[row][col]='V'
+            # if grid[row][col] > grid[row][col-1] and vis_grid[row][col-1]=='V': #visable from above
+            #     vis_grid[row][col]='V'
+            # if grid[row][col] > grid[row+1][col] and vis_grid[row+1][col] == 'V': #visable from right
+            #     vis_grid[row][col]='V'
+            # if grid[row][col] > grid[row][col+1] and vis_grid[row][col+1] == 'V': #visable from right
+            #     vis_grid[row][col]='V'
 
 
             
-    print(vis_grid)
+
     total = 0
     for row in vis_grid:
+        print(row)
         total += row.count('V')
 
     return total
