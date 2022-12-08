@@ -25,10 +25,7 @@ def part_1(grid):
             # if grid[row][col] > grid[row+1][col] and vis_grid[row+1][col] == 'V': #visable from right
             #     vis_grid[row][col]='V'
             # if grid[row][col] > grid[row][col+1] and vis_grid[row][col+1] == 'V': #visable from right
-            #     vis_grid[row][col]='V'
-
-
-            
+            #     vis_grid[row][col]='V'        
 
     total = 0
     for row in vis_grid:
