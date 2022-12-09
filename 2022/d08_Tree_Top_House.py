@@ -11,30 +11,27 @@ def read_url(url):
 	
 	return data
 def part_1(grid):
+    trees = [[*map(int, line)] for line in data]
 
-    vis_grid = [['T' for y in range(len(grid[0]))] for x in range(len(grid))]
-    for row, line in enumerate(grid):
-        for col, tree in enumerate(line):
-            if row -1 <0 or col -1 < 0 or row == len(grid)-1 or col == len(grid[0])-1: #tree is on the edge and so is visable
-                vis_grid[row][col]='V'
-                continue
-            # if  grid[row][col]> grid[row-1][col] and vis_grid[row-1][col]=='V': # visable from left
-            #     vis_grid[row][col]='V'
-            # if grid[row][col] > grid[row][col-1] and vis_grid[row][col-1]=='V': #visable from above
-            #     vis_grid[row][col]='V'
-            # if grid[row][col] > grid[row+1][col] and vis_grid[row+1][col] == 'V': #visable from right
-            #     vis_grid[row][col]='V'
-            # if grid[row][col] > grid[row][col+1] and vis_grid[row][col+1] == 'V': #visable from right
-            #     vis_grid[row][col]='V'        
+    vis_trees = 2*(len(trees[0]) + len(trees) -2) # number of trees round the edge
 
-    total = 0
-    for row in vis_grid:
-        print(row)
-        total += row.count('V')
+    for y in range(1, len(trees)-1):
+        for x in range(1, len(trees[0])-1):
+            tree = trees[y][x]
+            row = trees[y]
+            col = [i[x] for i in trees]
 
-    return total
+            left = row[:x]
+            right = row[x+1:]
+            above = col[:y]
+            below = col[y+1:]
+
+            if tree > min(max(left), max(right), max(above), max(below)):
+                vis_trees += 1
+
+    return vis_trees
 
 
 data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d08-input.txt')
-test_data = ["30373","25512","65332","33549","35390"]
-print(part_1(test_data))
+# data = ["30373","25512","65332","33549","35390"]
+print(part_1(data))
