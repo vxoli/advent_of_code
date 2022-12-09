@@ -31,7 +31,10 @@ def part_1(grid):
 
     return vis_trees
 
+def part_2(data):
+    return
 
-data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d08-input.txt')
-# data = ["30373","25512","65332","33549","35390"]
-print(part_1(data))
+
+# data = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d08-input.txt')
+data = ["30373","25512","65332","33549","35390"] # test data set
+print("Part 1: Consider your map; how many trees are visible from outside the grid?",part_1(data))
