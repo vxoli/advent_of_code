@@ -34,8 +34,6 @@ def part_1(grid):
 def part_2(data):
     trees = [[*map(int, line)] for line in data]
     scenic_score = 0
-    width = len(trees[0])
-    height =len(trees)
 
     for y in range(1, len(trees)-1):
         for x in range(1, len(trees[0])-1):
@@ -43,9 +41,9 @@ def part_2(data):
             row = trees[y]
             col = [i[x] for i in trees]
 
-            left = row[:x]
+            left = reversed(row[:x])
             right = row[x+1:]
-            above = col[:y]
+            above = reversed(col[:y])
             below = col[y+1:]
 
             left_blocked = [i for i,v in enumerate(left) if v-tree >=0]
