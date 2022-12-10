@@ -38,7 +38,7 @@ def part_1(commands):
                     case (0,-2):
                         tail_y -= 1
                     # moves for diagonal up right, up left, down left and down right - each has two head positions, but tail move same
-                    #up right
+                    # up right
                     case (1,2):
                         tail_x += 1
                         tail_y += 1
