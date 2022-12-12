@@ -18,8 +18,8 @@ def move(x,y,direction):
     return [new_x, new_y]
 
 def part_1(commands):
-    head_x, head_y = 1,1
-    tail_x, tail_y = 1,1
+    head_x, head_y = 0,0
+    tail_x, tail_y = 0,0
     tail_posn_list = []
     for line in commands:
         direction = line[0]
@@ -59,7 +59,7 @@ def part_1(commands):
     return len(tail_posn_list)
 
 def part_2(commands):
-    knots = [[1,1]]*10 # rope consists of ten knots, knots[0] is head, knots[9] is tail knot
+    knots = [[0,0]]*10 # rope consists of ten knots, knots[0] is head, knots[9] is tail knot
     head_x, head_y = knots[0][0], knots[0][1]
     tail_posn_list = []
     for line in commands:
@@ -68,14 +68,13 @@ def part_2(commands):
 
         for step in range(steps):
             head_x, head_y = move(head_x, head_y, direction)
+            knots[0] = [head_x,head_y]
             for i, knot in enumerate(knots):
                 if i == 0: continue
                 tail_x, tail_y = knot
                 tail_dist_x = knots[i-1][0]-tail_x
                 tail_dist_y = knots[i-1][1]-tail_y
-                print(knots)
-                print(knot)
-                print(tail_dist_x, tail_dist_y)
+
                 if abs(tail_dist_x) > 1 or abs(tail_dist_y) > 1: #tail has to move to catch up
                     match (tail_dist_x,tail_dist_y):
                         # moves for left right up down first
@@ -107,16 +106,15 @@ def part_2(commands):
                             print(tail_dist_x, tail_dist_y)
                             exit()
 
-                if (knots[:-1] not in tail_posn_list) and ([tail_x, tail_y] not in tail_posn_list): tail_posn_list.append([tail_x,tail_y])
-
                 knots[i] = [tail_x, tail_y]
-                knots[0] = [head_x,head_y]
+                if (knots[-1] not in tail_posn_list): tail_posn_list.append(knots[-1])
 
     return len(tail_posn_list)
 
 
 input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d09-input.txt')
 commands = [line.split() for line in input]
-# commands = [['R', 4], ['U', 4] , ['L', 3] , ['D', 1], ['R', 4], ['D', 1], ['L', 5], ['R', 2]] # test data
-#print("Part 1: Simulate your complete hypothetical series of motions. How many positions does the tail of the rope visit at least once?",part_1(commands))
-print(part_2(commands))
+# commands = [['R', 4], ['U', 4] , ['L', 3] , ['D', 1], ['R', 4], ['D', 1], ['L', 5], ['R', 2]] # test data for part 1]
+# commands = [['R', 5],['U', 8],['L', 8],['D', 3],['R', 17],['D', 10],['L', 25],['U', 20]] # tetst data for part 2
+print("Part 1: Simulate your complete hypothetical series of motions. How many positions does the tail of the rope visit at least once?",part_1(commands))
+print('Part 2: Simulate your complete series of motions on a larger rope with ten knots. How many positions does the tail of the rope visit at least once?',part_2(commands))
