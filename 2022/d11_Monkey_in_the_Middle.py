@@ -29,7 +29,7 @@ def split_input(data):
 	del d['M']
 	return d
 
-def monkey_throws(data):
+def monkey_throws(data, part):
 	for m, monkey in enumerate(data.copy()):
 		# calculate worry level
 		starting_items = data[monkey][0]
@@ -48,7 +48,7 @@ def monkey_throws(data):
 				case '+':
 					worry_level = int(worry) + value
 			# now relax and divide by three, round down.
-			worry_level = (worry_level // 3)
+			if part == 1: worry_level = (worry_level // 3)
 
 			# deciode what to do with item
 			if (worry_level % decision) == 0: # if decision true
@@ -66,9 +66,17 @@ input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022
 #input = ['Monkey 0:','  Starting items: 79, 98','  Operation: new = old * 19','  Test: divisible by 23','    If true: throw to monkey 2','    If false: throw to monkey 3','', 'Monkey 1:','  Starting items: 54, 65, 75, 74','  Operation: new = old + 6','  Test: divisible by 19','    If true: throw to monkey 2','    If false: throw to monkey 0','','Monkey 2:','  Starting items: 79, 60, 97','  Operation: new = old * old','  Test: divisible by 13','    If true: throw to monkey 1','    If false: throw to monkey 3','', 'Monkey 3:','  Starting items: 74','  Operation: new = old + 3','  Test: divisible by 17','    If true: throw to monkey 0','    If false: throw to monkey 1']
 input = split_input(input)
 for i in range(20):
-	input = monkey_throws(input)
+	input = monkey_throws(input, 1)
 total = []
 for i, monkey in enumerate(input):
 	total.append(input[monkey][5])
 total.sort()
 print('Part 1: What is the level of monkey business after 20 rounds of stuff-slinging simian shenanigans?',total[-2:][0] * total[-2:][1])
+for i in range(10000):
+	print(i)
+	input = monkey_throws(input,2)
+total = []
+for i, monkey in enumerate(input):
+	total.append(input[monkey][5])
+total.sort()
+print('Part 2: What is the level of monkey business after 10000 rounds of stuff-slinging simian shenanigans?',total[-2:][0] * total[-2:][1])
