@@ -153,4 +153,5 @@ Afterward, locate the divider packets. To find the decoder key for this distress
 
 Organize all of the packets into the correct order. What is the decoder key for the distress signal?
 
-**Answer:**
+**Answer: 27930**
+That's the right answer! You are one gold star closer to collecting enough star fruit.
