@@ -1,5 +1,5 @@
 # AoC 2022
-# --- Day 14: ---
+# --- Day 14: Regolith Reservoir---
 
 import urllib.request
 
@@ -16,4 +16,3 @@ def part_1(data):
 	return
 
 input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d14-input.txt')
-print(input)
