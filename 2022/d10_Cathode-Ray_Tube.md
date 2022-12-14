@@ -15,11 +15,11 @@ noop takes one cycle to complete. It has no other effect.
 The CPU uses these instructions in a program (your puzzle input) to, somehow, tell the screen what to draw.
 
 Consider the following small program:
-~~~
+```
 noop
 addx 3
 addx -5
-~~~
+```
 Execution of this program proceeds as follows:
 
 At the start of the first cycle, the noop instruction begins execution. During the first cycle, X is 1. After the first cycle, the noop instruction finishes execution, doing nothing.  
@@ -30,7 +30,7 @@ During the fifth cycle, X is still 4. After the fifth cycle, the addx -5 instruc
 Maybe you can learn something by looking at the value of the X register throughout execution. For now, consider the signal strength (the cycle number multiplied by the value of the X register) during the 20th cycle and every 40 cycles after that (that is, during the 20th, 60th, 100th, 140th, 180th, and 220th cycles).  
 
 For example, consider this larger program:
-~~~
+```
 addx 15
 addx -11
 addx 6
@@ -177,7 +177,7 @@ addx -11
 noop
 noop
 noop
-~~~
+```
 The interesting signal strengths can be determined as follows:
 
 During the 20th cycle, register X has the value 21, so the signal strength is 20 * 21 = 420. (The 20th cycle occurs in the middle of the second addx -1, so the value of register X is the starting value, 1, plus all of the other addx values up to that point: 1 + 15 - 11 + 6 - 3 + 5 - 1 - 8 + 13 + 4 = 21.)  
@@ -204,18 +204,18 @@ It seems like the X register controls the horizontal position of a sprite. Speci
 You count the pixels on the CRT: 40 wide and 6 high. This CRT screen draws the top row of pixels left-to-right, then the row below that, and so on. The left-most pixel in each row is in position 0, and the right-most pixel in each row is in position 39.
 
 Like the CPU, the CRT is tied closely to the clock circuit: the CRT draws a single pixel during each cycle. Representing each pixel of the screen as a #, here are the cycles during which the first and last pixel in each row are drawn:
-~~~
+```
 Cycle   1 -> ######################################## <- Cycle  40
 Cycle  41 -> ######################################## <- Cycle  80
 Cycle  81 -> ######################################## <- Cycle 120
 Cycle 121 -> ######################################## <- Cycle 160
 Cycle 161 -> ######################################## <- Cycle 200
 Cycle 201 -> ######################################## <- Cycle 240
-~~~
+```
 So, by carefully timing the CPU instructions and the CRT drawing operations, you should be able to determine whether the sprite is visible the instant each pixel is drawn. If the sprite is positioned such that one of its three pixels is the pixel currently being drawn, the screen produces a lit pixel (#); otherwise, the screen leaves the pixel dark (.).
 
 The first few pixels from the larger example above are drawn as follows:
-~~~
+```
 Sprite position: ###.....................................
 
 Start cycle   1: begin executing addx 15
@@ -312,16 +312,16 @@ During cycle 21: CRT draws pixel in position 20
 Current CRT row: ##..##..##..##..##..#
 End of cycle 21: finish executing addx -1 (Register X is now 20)
 Sprite position: ...................###..................
-~~~
+```
 Allowing the program to run to completion causes the CRT to produce the following image:
-~~~
+```
 ##..##..##..##..##..##..##..##..##..##..
 ###...###...###...###...###...###...###.
 ####....####....####....####....####....
 #####.....#####.....#####.....#####.....
 ######......######......######......####
 #######.......#######.......#######.....
-~~~
+```
 Render the image given by your program. What eight capital letters appear on your CRT?
 
 **Answer:**
