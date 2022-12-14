@@ -5,7 +5,7 @@ As you finally start making your way upriver, you realize your pack is much ligh
 To get your stuff back, you need to be able to predict where the monkeys will throw your items. After some careful observation, you realize the monkeys operate based on how worried you are about each item.
 
 You take some notes (your puzzle input) on the items each monkey currently has, how worried you are about those items, and how the monkey makes decisions based on your worry level. For example:
-~~~
+```
 Monkey 0:
   Starting items: 79, 98
   Operation: new = old * 19
@@ -33,7 +33,7 @@ Monkey 3:
   Test: divisible by 17
     If true: throw to monkey 0
     If false: throw to monkey 1
-~~~
+```
 Each monkey has several attributes:
 
 - Starting items lists your worry level for each item the monkey is currently holding in the order they will be inspected.  
@@ -49,7 +49,7 @@ The monkeys take turns inspecting and throwing items. On a single monkey's turn,
 When a monkey throws an item to another monkey, the item goes on the end of the recipient monkey's list. A monkey that starts a round with no items could end up inspecting and throwing many items by the time its turn comes around. If a monkey is holding no items at the start of its turn, its turn ends.
 
 In the above example, the first round proceeds as follows:
-
+```
 Monkey 0:
   Monkey inspects an item with a worry level of 79.
     Worry level is multiplied by 19 to 1501.
@@ -124,16 +124,17 @@ Monkey 3:
     Monkey gets bored with item. Worry level is divided by 3 to 1046.
     Current worry level is not divisible by 17.
     Item with worry level 1046 is thrown to monkey 1.
+```
 After round 1, the monkeys are holding items with these worry levels:
-
+```
 Monkey 0: 20, 23, 27, 26
 Monkey 1: 2080, 25, 167, 207, 401, 1046
 Monkey 2: 
 Monkey 3: 
 Monkeys 2 and 3 aren't holding any items at the end of the round; they both inspected items during the round and threw them all before the round ended.
-
+```
 This process continues for a few more rounds:
-
+```
 After round 2, the monkeys are holding items with these worry levels:
 Monkey 0: 695, 10, 71, 135, 350
 Monkey 1: 43, 49, 58, 55, 362
@@ -209,6 +210,7 @@ Monkey 0 inspected items 101 times.
 Monkey 1 inspected items 95 times.
 Monkey 2 inspected items 7 times.
 Monkey 3 inspected items 105 times.
+```
 In this example, the two most active monkeys inspected items 101 and 105 times. The level of monkey business in this situation can be found by multiplying these together: 10605.
 
 Figure out which monkeys to chase by counting how many items they inspect over 20 rounds. What is the level of monkey business after 20 rounds of stuff-slinging simian shenanigans?
@@ -229,7 +231,7 @@ Unfortunately, that relief was all that was keeping your worry levels from reach
 At this rate, you might be putting up with these monkeys for a very long time - possibly 10000 rounds!
 
 With these new rules, you can still figure out the monkey business after 10000 rounds. Using the same example above:
-
+```
 == After round 1 ==
 Monkey 0 inspected items 2 times.
 Monkey 1 inspected items 4 times.
@@ -301,6 +303,7 @@ Monkey 0 inspected items 52166 times.
 Monkey 1 inspected items 47830 times.
 Monkey 2 inspected items 1938 times.
 Monkey 3 inspected items 52013 times.
+```
 After 10000 rounds, the two most active monkeys inspected items 52166 and 52013 times. Multiplying these together, the level of monkey business in this situation is now 2713310158.
 
 Worry levels are no longer divided by three after each item is inspected; you'll need to find another way to keep your worry levels manageable. Starting again from the initial state in your puzzle input, what is the level of monkey business after 10000 rounds?
