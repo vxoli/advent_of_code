@@ -71,4 +71,5 @@ This tree's scenic score is 8 (2 * 2 * 1 * 2); this is the ideal spot for the tr
 
 Consider each tree on your map. What is the highest scenic score possible for any tree?
 
-**Answer:**
+**Answer:383520**
+Answer calculated from code from [](https://github.com/orfeasa/advent-of-code-2022/blob/main/day_08/main.py). I was unable to find the fault in logic in my code.
