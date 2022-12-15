@@ -28,7 +28,8 @@ def make_grid(data):
 	max_y = find_min_max(data,1)[1]
 	min_y = 0 #find_min_max(data,1)[0]
 	print(max_x,',',min_x,',',max_y,',',min_y)
-	grid = [['.']*(max_x-min_x+1)]*(max_y-min_y+1)
+	grid = [['.' for y in range(max_y-min_y+1)] for x in range(max_y-min_y+1)]
+	for line in grid: print(line)
 	for line in data:
 		co_ords = line.split('->')
 		for i, pair in enumerate(co_ords[:-1]):
@@ -38,13 +39,18 @@ def make_grid(data):
 			end_y = int(co_ords[i+1].split(',')[1])
 			print(start_x,',',start_y,'--',end_x,',',end_y)
 			if start_x == end_x:
-				for y in range(start_y,end_y):
-					grid[max_x-start_x][max_y-y]='#'
+				for y in range(min(start_y,end_y),max(start_y,end_y)+1):
+					print(y)
+					print(grid[max_x-start_x-1][y])
+					grid[y-min_y][start_x-min_x] ='#'
 					for line in grid: print(line)
-					exit()
+					
 			if start_y == end_y: 
-				for x in range(start_x,end_x):
-					grid[max_x-x][max_y-start_y]='#'
+				for x in range(min(start_x,end_x),max(start_x, end_x)+1):
+					print(x,min(start_x,end_x),max(start_x,end_x)+1)
+					print(x,min_x,max_x,x-min_x)
+					grid[start_y-min_y][x-min_x] ='#'
+					for line in grid: print(line)
 
 
 		# for x in co_ords:
