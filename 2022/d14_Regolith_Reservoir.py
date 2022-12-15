@@ -93,11 +93,9 @@ def part_1(data):
 	while full == False:
 		sand_units += 1
 		grid, min_x, max_x, min_y, max_y, full = drop_sand(grid, min_x, max_x, min_y, max_y, full)
-	return grid, sand_units-1
+	return sand_units-1
 
-# input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d14-input.txt')
-input = ['498,4 -> 498,6 -> 496,6','503,4 -> 502,4 -> 502,9 -> 494,9']
-grid, sand_units = part_1(input)
-
-for line in grid: print(line)
-print(sand_units)
+input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d14-input.txt')
+#input = ['498,4 -> 498,6 -> 496,6','503,4 -> 502,4 -> 502,9 -> 494,9']
+sand_units = part_1(input)
+print("Part 1: How many units of sand come to rest before sand starts flowing into the abyss below?",sand_units)
