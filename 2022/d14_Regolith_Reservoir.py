@@ -30,7 +30,6 @@ def make_grid(data):
 	air = '.'
 	rock = "#"
 	source = "+"
-	print(max_x,',',min_x,',',max_y,',',min_y)
 	grid = [[air for y in range(max_y-min_y+1)] for x in range(max_y-min_y+1)]
 	for line in data:
 		co_ords = line.split('->')
@@ -48,15 +47,57 @@ def make_grid(data):
 					grid[start_y-min_y][x-min_x] = rock
 
 	grid[0-min_y][500-min_x]=source
-	return grid
+	return [grid, min_x, max_x, min_y, max_y]
+
+def drop_sand(grid, min_x, max_x, min_y, max_y, full):
+	air = '.'
+	rock = "#"
+	source = "+"
+	sand = "o"
+	start_x, start_y = 500,0
+	x = 500
+	y = 0
+	try:
+		while grid[y][x-min_x] != rock and grid[y][x-min_x] != sand:
+			y += 1
+		y -= 1
+		grid[y][x-min_x] = sand
+		can_fall = True
+		while can_fall:
+			if grid[y+1][x-min_x] == air:
+				grid[y][x-min_x] = air
+				grid[y+1][x-min_x] = sand
+				y += 1
+			elif grid[y+1][x-min_x-1] == air:
+				grid[y][x-min_x] = air
+				grid[y+1][x-min_x-1] = sand
+				y += 1
+				x -= 1
+			elif grid[y+1][x-min_x+1] == air:
+				grid[y][x-min_x] = air
+				grid[y+1][x-min_x+1] = sand
+				y += 1
+				x += 1
+			else: can_fall = False
+	except: 
+		full = True
+		return [grid, min_x, max_x, min_y, max_y, full]
+
+	return [grid, min_x, max_x, min_y, max_y, full]
+
 
 def part_1(data):
-	grid = make_grid(data)
-	sand_drip_from = (0,500)
-
-	return grid
+	grid, min_x, max_x, min_y, max_y = make_grid(data)
+	sand_units = 0
+	full = False
+	while full == False:
+		sand_units += 1
+		grid, min_x, max_x, min_y, max_y, full = drop_sand(grid, min_x, max_x, min_y, max_y, full)
+	return grid, sand_units-1
 
 # input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d14-input.txt')
 input = ['498,4 -> 498,6 -> 496,6','503,4 -> 502,4 -> 502,9 -> 494,9']
-grid = part_1(input)
+grid, sand_units = part_1(input)
+
 for line in grid: print(line)
+print(sand_units)
