@@ -11,8 +11,53 @@ def read_url(url):
 	
 	return data
 
+def find_min_max(data, posn): #posn = 0 or 1
+	max = 0
+	min = 100000
+	for line in data:
+		co_ordinates = line.split('->')
+		for x in co_ordinates:
+			if int(x.split(',')[posn]) > max: max = int(x.split(',')[posn])
+			if int(x.split(',')[posn]) < min: min = int(x.split(',')[posn])
+
+	return (min,max)
+
+def make_grid(data):
+	max_x = find_min_max(data,0)[1]
+	min_x = find_min_max(data,0)[0]
+	max_y = find_min_max(data,1)[1]
+	min_y = 0 #find_min_max(data,1)[0]
+	print(max_x,',',min_x,',',max_y,',',min_y)
+	grid = [['.']*(max_x-min_x+1)]*(max_y-min_y+1)
+	for line in data:
+		co_ords = line.split('->')
+		for i, pair in enumerate(co_ords[:-1]):
+			start_x = int(pair.split(',')[0])
+			start_y = int(pair.split(',')[1])
+			end_x = int(co_ords[i+1].split(',')[0])
+			end_y = int(co_ords[i+1].split(',')[1])
+			print(start_x,',',start_y,'--',end_x,',',end_y)
+			if start_x == end_x:
+				for y in range(start_y,end_y):
+					grid[max_x-start_x][max_y-y]='#'
+					for line in grid: print(line)
+					exit()
+			if start_y == end_y: 
+				for x in range(start_x,end_x):
+					grid[max_x-x][max_y-start_y]='#'
+
+
+		# for x in co_ords:
+		# 	print(x)
+
+
+	return grid
+
 def part_1(data):
 
 	return
 
-input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d14-input.txt')
+# input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d14-input.txt')
+input = ['498,4 -> 498,6 -> 496,6','503,4 -> 502,4 -> 502,9 -> 494,9']
+grid = make_grid(input)
+for line in grid: print(line)
