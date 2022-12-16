@@ -57,36 +57,41 @@ def drop_sand(grid, min_x, max_x, min_y, max_y, full):
 	start_x, start_y = 500,0
 	x = 500
 	y = 0
-	deltax = 0
-	while grid[y][x-min_x] != rock and grid[y][x-min_x] != sand:
-		y += 1
+	try:
+		while grid[y][x-min_x] != rock and grid[y][x-min_x] != sand:
+			y += 1
 		y -= 1
 		grid[y][x-min_x] = sand
 		can_fall = True
 		while can_fall:
 			if grid[y+1][x-min_x] == air:
-				deltax = 0 #grid[y][x-min_x] = air
-				#grid[y+1][x-min_x] = sand
-				# y += 1
+				delta_x = 0
+				grid[y][x-min_x] = air
+				grid[y+1][x-min_x+delta_x] = sand
+				y += 1
 			elif grid[y+1][x-min_x-1] == air:
-				deltax = -1 #grid[y][x-min_x] = air
-				#grid[y+1][x-min_x-1] = sand
-				#y += 1
-				#x -= 1
+				delta_x = -1
+				grid[y][x-min_x] = air
+				grid[y+1][x-min_x+delta_x] = sand
+				y += 1
+				x -= 1
 			elif grid[y+1][x-min_x+1] == air:
-				deltax = 1 # grid[y][x-min_x] = air
-				#grid[y+1][x-min_x+1] = sand
-				#y += 1
-				#x += 1
-			else: can_fall = False
-			print('hello')
-			if x + deltax > max_x or x + deltax < min_x:
+				delta_x = 1
+				grid[y][x-min_x] = air
+				grid[y+1][x-min_x+delta_x] = sand
+				y += 1
+				x += 1
+			else:
 				can_fall = False
-			grid[y][x-min_x] = air
-			grid[y+1][x-min_x+deltax] = sand
-			y += 1
-			x += deltax
 
+			if x < min_x or x > max_x : 
+				full = True	
+				return [grid, min_x, max_x, min_y, max_y, full]
+
+	except: 
+		full = True
+		print(y+1,x-min_x)
+		return [grid, min_x, max_x, min_y, max_y, full]
 
 	return [grid, min_x, max_x, min_y, max_y, full]
 
@@ -101,6 +106,6 @@ def part_1(data):
 	return sand_units-1
 
 input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d14-input.txt')
-input = ['498,4 -> 498,6 -> 496,6','503,4 -> 502,4 -> 502,9 -> 494,9']
+#input = ['498,4 -> 498,6 -> 496,6','503,4 -> 502,4 -> 502,9 -> 494,9']
 sand_units = part_1(input)
 print("Part 1: How many units of sand come to rest before sand starts flowing into the abyss below?",sand_units)
