@@ -57,31 +57,30 @@ def drop_sand(grid, min_x, max_x, min_y, max_y, full):
 	start_x, start_y = 500,0
 	x = 500
 	y = 0
-	try:
-		while grid[y][x-min_x] != rock and grid[y][x-min_x] != sand:
+	while grid[y][x-min_x] != rock and grid[y][x-min_x] != sand:
+		y += 1
+	y -= 1
+	grid[y][x-min_x] = sand
+	can_fall = True
+	while can_fall:
+		if y+1 > max_y:
+			full = True
+			return [grid, min_x, max_x, min_y, max_y, full]
+		if grid[y+1][x-min_x] == air:
+			grid[y][x-min_x] = air
+			grid[y+1][x-min_x] = sand
 			y += 1
-		y -= 1
-		grid[y][x-min_x] = sand
-		can_fall = True
-		while can_fall:
-			if grid[y+1][x-min_x] == air:
-				grid[y][x-min_x] = air
-				grid[y+1][x-min_x] = sand
-				y += 1
-			elif grid[y+1][x-min_x-1] == air:
-				grid[y][x-min_x] = air
-				grid[y+1][x-min_x-1] = sand
-				y += 1
-				x -= 1
-			elif grid[y+1][x-min_x+1] == air:
-				grid[y][x-min_x] = air
-				grid[y+1][x-min_x+1] = sand
-				y += 1
-				x += 1
-			else: can_fall = False
-	except: 
-		full = True
-		return [grid, min_x, max_x, min_y, max_y, full]
+		elif grid[y+1][x-min_x-1] == air:
+			grid[y][x-min_x] = air
+			grid[y+1][x-min_x-1] = sand
+			y += 1
+			x -= 1
+		elif grid[y+1][x-min_x+1] == air:
+			grid[y][x-min_x] = air
+			grid[y+1][x-min_x+1] = sand
+			y += 1
+			x += 1
+		else: can_fall = False
 
 	return [grid, min_x, max_x, min_y, max_y, full]
 
