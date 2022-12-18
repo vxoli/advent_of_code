@@ -15,10 +15,6 @@ def parse(input):
 	co_ordinates = set()
 	SENSOR = 'S'
 	BEACON = 'B'
-	max_x = 0
-	min_x = float('inf')
-	max_y = 0
-	min_y = 0
 	for line in input:
 		# s = sensor location, b = beacon location
 		s = line.split(':')[0].split(',')
@@ -29,16 +25,6 @@ def parse(input):
 		b1 = int(b[1].strip().strip('y='))
 		manhattan = abs(b0-s0) + abs(b1-s1)
 		co_ordinates.add(('S',s0,s1,'B',b0,b1,manhattan))
-
-	# max_s_x = max([line[1] for line in co_ordinates])
-	# max_s_y = max([line[2] for line in co_ordinates])
-	# max_b_x = max([line[4] for line in co_ordinates])
-	# max_b_y = max([line[5] for line in co_ordinates])
-	# min_s_x = min([line[1] for line in co_ordinates])
-	# min_s_y = min([line[2] for line in co_ordinates])
-	# min_b_x = min([line[4] for line in co_ordinates])
-	# min_b_y = min([line[5] for line in co_ordinates])
-	# offsetx, offsety = min(min_s_x,min_b_x), min(min_s_y,min_b_y)
 	
 	return co_ordinates # return numerical x,y for Sensor and Beacon and manhattan distance
 
@@ -65,23 +51,23 @@ def part_1(co_ordinates, row):
 
 	return len([i for i in no_beacon_posn.difference(beacon_posn, sensor_posn) if i[1]==row])
 
-#input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d15-input.txt')
-input = [	'Sensor at x=2, y=18: closest beacon is at x=-2, y=15',
-			'Sensor at x=9, y=16: closest beacon is at x=10, y=16',
-			'Sensor at x=13, y=2: closest beacon is at x=15, y=3',
-			'Sensor at x=12, y=14: closest beacon is at x=10, y=16',
-			'Sensor at x=10, y=20: closest beacon is at x=10, y=16',
-			'Sensor at x=14, y=17: closest beacon is at x=10, y=16',
-			'Sensor at x=8, y=7: closest beacon is at x=2, y=10',
-			'Sensor at x=2, y=0: closest beacon is at x=2, y=10',
-			'Sensor at x=0, y=11: closest beacon is at x=2, y=10',
-			'Sensor at x=20, y=14: closest beacon is at x=25, y=17',
-			'Sensor at x=17, y=20: closest beacon is at x=21, y=22',
-			'Sensor at x=16, y=7: closest beacon is at x=15, y=3',
-			'Sensor at x=14, y=3: closest beacon is at x=15, y=3',
-			'Sensor at x=20, y=1: closest beacon is at x=15, y=3']
+input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d15-input.txt')
+# input = [	'Sensor at x=2, y=18: closest beacon is at x=-2, y=15',
+# 			'Sensor at x=9, y=16: closest beacon is at x=10, y=16',
+# 			'Sensor at x=13, y=2: closest beacon is at x=15, y=3',
+# 			'Sensor at x=12, y=14: closest beacon is at x=10, y=16',
+# 			'Sensor at x=10, y=20: closest beacon is at x=10, y=16',
+# 			'Sensor at x=14, y=17: closest beacon is at x=10, y=16',
+# 			'Sensor at x=8, y=7: closest beacon is at x=2, y=10',
+# 			'Sensor at x=2, y=0: closest beacon is at x=2, y=10',
+# 			'Sensor at x=0, y=11: closest beacon is at x=2, y=10',
+# 			'Sensor at x=20, y=14: closest beacon is at x=25, y=17',
+# 			'Sensor at x=17, y=20: closest beacon is at x=21, y=22',
+# 			'Sensor at x=16, y=7: closest beacon is at x=15, y=3',
+# 			'Sensor at x=14, y=3: closest beacon is at x=15, y=3',
+# 			'Sensor at x=20, y=1: closest beacon is at x=15, y=3']
 
 co_ordinates = parse(input)
-row = 10 #2000000
+row = 2000000
 print(part_1(co_ordinates, row))
 
