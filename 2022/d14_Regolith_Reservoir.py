@@ -63,9 +63,10 @@ def drop_sand(grid, min_x, max_x, min_y, max_y, full):
 	grid[y][x-min_x] = sand
 	can_fall = True
 	while can_fall:
-		if y+1 > max_y:
+		if y+1 > max_y: #sand falling past floor - ie into the abyss
 			full = True
 			return [grid, min_x, max_x, min_y, max_y, full]
+		if grid[y+1][x-min_x] not in  {air,sand,rock} and grid[y+1][x-min_x-1] not in {air,sand,rock} and grid[y+1][x-min_x+1] not in {air,sand,rock} and grid[y][x] == source: print('FULL!')
 		if grid[y+1][x-min_x] == air:
 			grid[y][x-min_x] = air
 			grid[y+1][x-min_x] = sand
@@ -94,7 +95,64 @@ def part_1(data):
 		grid, min_x, max_x, min_y, max_y, full = drop_sand(grid, min_x, max_x, min_y, max_y, full)
 	return sand_units-1
 
+def parse_for_part_2(data): # trying different strategy here and using set rather than array
+	filled = set()
+	for line in data:
+		coords = []
+		for str_coord in line.split(' -> '):
+			x, y = map(int, str_coord.split(','))
+			coords.append((x,y))
+		for i in range(1, len(coords)):
+			cx, cy = coords[i] #current
+			px, py = coords[i-1] # previous
+			if cy != py:
+				assert cx == px
+				for y in range(min(cy,py), max(cy,py)+1):
+					filled.add((cx,y))
+			if cx != px:
+				assert cy == py
+				for x in range(min(cx,px),max(cx,px)+1):
+					filled.add((x,cy))
+	max_y = max([coord[1] for coord in filled])
+
+	return filled, max_y
+
+def sand_sim_for_part_2():
+	global filled
+	x,y = 500, 0
+	if (x,y) in filled:
+		return (x,y)
+	while y <= max_y:
+		if (x,y+1) not in filled:
+			y += 1
+			continue
+		if (x-1,y+1) not in filled:
+			x -= 1
+			y += 1
+			continue
+		if (x+1,y+1) not in filled:
+			x += 1
+			y += 1
+			continue
+		break
+	return (x,y)
+
+def part_2(input):
+	global filled, max_y
+	filled, max_y = parse_for_part_2(input)
+	sand_units = 0
+	while True:
+		x,y = sand_sim_for_part_2()
+		filled.add((x,y))
+		sand_units += 1
+		if (x,y) == (500,0): break
+	return sand_units
+
 input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d14-input.txt')
 #input = ['498,4 -> 498,6 -> 496,6','503,4 -> 502,4 -> 502,9 -> 494,9']
-sand_units = part_1(input)
-print("Part 1: How many units of sand come to rest before sand starts flowing into the abyss below?",sand_units)
+
+print("Part 1: How many units of sand come to rest before sand starts flowing into the abyss below?",part_1(input))
+
+## --- Part Two ---
+
+print("Part 2: Using your scan, simulate the falling sand until the source of the sand becomes blocked. How many units of sand come to rest?", part_2(input))
