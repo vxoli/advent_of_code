@@ -42,7 +42,7 @@ def parse(input):
 	
 	return co_ordinates # return numerical x,y for Sensor and Beacon and manhattan distance
 
-def part_1(co_ordinates):
+def part_1(co_ordinates, row):
 	## Instead of forming grid and filling in - runs nto memory errors because grid is 4.5mill cols and 4.5 mill rows - run loop and calculate all the possible sites for each sensor - store in set, and then return those that are in row 200000.
 	counter = 0
 	beacon_posn = set([(i[4],i[5]) for i in co_ordinates])
@@ -57,13 +57,13 @@ def part_1(co_ordinates):
 		# loop through all possible points manhattan dist from S and store coords in no_beacons
 		for i in range(manhattan+1):
 			for j in range(manhattan-i+1):
-				if (sy+ j == 10) or (sy -j == 10): 
+				if (sy+ j == row) or (sy -j == row): 
 					no_beacon_posn.add((sx+i,sy+j))
 					no_beacon_posn.add((sx+i,sy-j))
 					no_beacon_posn.add((sx-i,sy+j))
 					no_beacon_posn.add((sx-i,sy-j))
 
-	return len([i for i in no_beacon_posn.difference(beacon_posn, sensor_posn) if i[1]==10])
+	return len([i for i in no_beacon_posn.difference(beacon_posn, sensor_posn) if i[1]==row])
 
 #input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d15-input.txt')
 input = [	'Sensor at x=2, y=18: closest beacon is at x=-2, y=15',
@@ -82,5 +82,6 @@ input = [	'Sensor at x=2, y=18: closest beacon is at x=-2, y=15',
 			'Sensor at x=20, y=1: closest beacon is at x=15, y=3']
 
 co_ordinates = parse(input)
-print(part_1(co_ordinates))
+row = 10 #2000000
+print(part_1(co_ordinates, row))
 
