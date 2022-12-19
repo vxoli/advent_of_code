@@ -12,3 +12,4 @@ def read_url(url):
 	return data
 
 input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d17-input.txt')
+for line in input: print(line)

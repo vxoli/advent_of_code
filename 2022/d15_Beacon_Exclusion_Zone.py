@@ -66,6 +66,6 @@ input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022
 # 			'Sensor at x=20, y=1: closest beacon is at x=15, y=3']
 
 co_ordinates = parse(input)
-row = 10 #2000000
+row = 2000000
 print(part_1(co_ordinates, row))
 
