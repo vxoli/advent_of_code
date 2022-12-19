@@ -13,8 +13,6 @@ def read_url(url):
 
 def parse(input):
 	co_ordinates = set()
-	SENSOR = 'S'
-	BEACON = 'B'
 	for line in input:
 		# s = sensor location, b = beacon location
 		s = line.split(':')[0].split(',')
