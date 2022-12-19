@@ -39,7 +39,5 @@ def part_1(data):
 	return uncovered_sides
 
 input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d18-input.txt')
-#input = [[2,2,2],[1,2,2],[3,2,2],[2,1,2],[2,3,2],[2,2,1],[2,2,3],[2,2,4],[2,2,6],[1,2,5],[3,2,5],[2,1,5],[2,3,5]]
-#input = [[1,1,1],[2,1,1]]
 input = parse(input) # converts to set of x,y,z
-print(part_1(input))
+print("Part 1: What is the surface area of your scanned lava droplet?",part_1(input))
