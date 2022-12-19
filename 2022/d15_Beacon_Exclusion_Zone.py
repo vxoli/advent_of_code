@@ -25,7 +25,7 @@ def parse(input):
 		b1 = int(b[1].strip().strip('y='))
 		manhattan = abs(b0-s0) + abs(b1-s1)
 		co_ordinates.add(('S',s0,s1,'B',b0,b1,manhattan))
-	
+
 	return co_ordinates # return numerical x,y for Sensor and Beacon and manhattan distance
 
 def part_1(co_ordinates, row):
@@ -51,21 +51,21 @@ def part_1(co_ordinates, row):
 
 	return len([i for i in no_beacon_posn.difference(beacon_posn, sensor_posn) if i[1]==row])
 
-#input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d15-input.txt')
-input = [	'Sensor at x=2, y=18: closest beacon is at x=-2, y=15',
-			'Sensor at x=9, y=16: closest beacon is at x=10, y=16',
-			'Sensor at x=13, y=2: closest beacon is at x=15, y=3',
-			'Sensor at x=12, y=14: closest beacon is at x=10, y=16',
-			'Sensor at x=10, y=20: closest beacon is at x=10, y=16',
-			'Sensor at x=14, y=17: closest beacon is at x=10, y=16',
-			'Sensor at x=8, y=7: closest beacon is at x=2, y=10',
-			'Sensor at x=2, y=0: closest beacon is at x=2, y=10',
-			'Sensor at x=0, y=11: closest beacon is at x=2, y=10',
-			'Sensor at x=20, y=14: closest beacon is at x=25, y=17',
-			'Sensor at x=17, y=20: closest beacon is at x=21, y=22',
-			'Sensor at x=16, y=7: closest beacon is at x=15, y=3',
-			'Sensor at x=14, y=3: closest beacon is at x=15, y=3',
-			'Sensor at x=20, y=1: closest beacon is at x=15, y=3']
+input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d15-input.txt')
+# input = [	'Sensor at x=2, y=18: closest beacon is at x=-2, y=15',
+# 			'Sensor at x=9, y=16: closest beacon is at x=10, y=16',
+# 			'Sensor at x=13, y=2: closest beacon is at x=15, y=3',
+# 			'Sensor at x=12, y=14: closest beacon is at x=10, y=16',
+# 			'Sensor at x=10, y=20: closest beacon is at x=10, y=16',
+# 			'Sensor at x=14, y=17: closest beacon is at x=10, y=16',
+# 			'Sensor at x=8, y=7: closest beacon is at x=2, y=10',
+# 			'Sensor at x=2, y=0: closest beacon is at x=2, y=10',
+# 			'Sensor at x=0, y=11: closest beacon is at x=2, y=10',
+# 			'Sensor at x=20, y=14: closest beacon is at x=25, y=17',
+# 			'Sensor at x=17, y=20: closest beacon is at x=21, y=22',
+# 			'Sensor at x=16, y=7: closest beacon is at x=15, y=3',
+# 			'Sensor at x=14, y=3: closest beacon is at x=15, y=3',
+# 			'Sensor at x=20, y=1: closest beacon is at x=15, y=3']
 
 co_ordinates = parse(input)
 row = 10 #2000000
