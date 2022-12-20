@@ -15,12 +15,12 @@ def read_file(filename): # read from disk
 	data = []
 	with open(filename) as f:
 		for line in f:
-			data.append(line.strip())
+			data.append(int(line.strip()))
 
 	return data
 
 def part_1(data):
-	# lets work with a dictionary with {key: position in sequence, and value the number}.
+
 	moves = data.copy()
 	for move in moves: 
 	#remove each number from current position (cp) and reinsert into new position (np)
@@ -38,15 +38,9 @@ def part_1(data):
 
 	return sum
 
-# def make_dict(data):
-# 	data_dict = {}
-# 	for i,line in enumerate(input):
-# 		data_dict[i]=line
-# 	return data_dict
-
 #input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d20-input.txt')
 #input = read_file("/home/christopher-spectre/Development/advent_of_code/2022/d20-input.txt")
-input = [1,2,-3,3,-2,0,4]
+input = [1,2,-3,3,-2,0,4] # Test data
 print(part_1(input))
 
 
