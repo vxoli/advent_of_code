@@ -24,7 +24,6 @@ def part_1(data):
 	moves = data.copy()
 	for move in moves: 
 	#remove each number from current position (cp) and reinsert into new position (np)
-		print(data)
 		if move == 0: continue
 		cp = data.index(move)
 		if move <0: move=move-1
@@ -32,16 +31,12 @@ def part_1(data):
 		np = (cp+move)%(len(data))
 		temp = data[cp]
 		data= data[:cp]+data[cp+1:]
-		left = data[:np]
-		right = data[np:]
-		data = left + [temp] + right
-		print(data,'\n')
+		data = data[:np] + [temp] + data[np:]
+	sum = 0
+	for i in (1000,2000,3000):
+		sum += data[(data.index(0)+(i%len(data)))%len(data)]
 
-#		print(np)
-
-# works for positive numbers - breaks on negative - drops number off list
-
-	return
+	return sum
 
 # def make_dict(data):
 # 	data_dict = {}
@@ -52,7 +47,7 @@ def part_1(data):
 #input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d20-input.txt')
 #input = read_file("/home/christopher-spectre/Development/advent_of_code/2022/d20-input.txt")
 input = [1,2,-3,3,-2,0,4]
-part_1(input)
+print(part_1(input))
 
 
 
