@@ -37,7 +37,7 @@ def part_1(data):
 		print(list(list_before+num_move+[temp]+list_remain))
 		data = list(list_before+num_move+[temp]+list_remain)
 
-
+# works for positive numbers - breaks on negative - drops number off list
 
 	return
 
