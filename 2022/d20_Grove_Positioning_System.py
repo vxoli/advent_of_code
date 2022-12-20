@@ -22,20 +22,22 @@ def read_file(filename): # read from disk
 def part_1(data):
 	# lets work with a dictionary with {key: position in sequence, and value the number}.
 	moves = data.copy()
-	for move in moves:
-		cp = data.index(move)
+	for move in moves: 
+	#remove each number from current position (cp) and reinsert into new position (np)
 		print(data)
-		np = (cp + move)%len(data)
-		list_before = data[:cp]
-		list_after = data[(cp+1)%len(data):]
+		if move == 0: continue
+		cp = data.index(move)
+		if move <0: move=move-1
+		if cp+move > len(data): move = move + 1
+		np = (cp+move)%(len(data))
 		temp = data[cp]
-		print(cp,np,temp)
-		print(list(list_before+[temp]+list_after))
-		num_move = list_after[cp:np]
-		list_remain = list_after[np:]
-		print(num_move, list_remain)
-		print(list(list_before+num_move+[temp]+list_remain))
-		data = list(list_before+num_move+[temp]+list_remain)
+		data= data[:cp]+data[cp+1:]
+		left = data[:np]
+		right = data[np:]
+		data = left + [temp] + right
+		print(data,'\n')
+
+#		print(np)
 
 # works for positive numbers - breaks on negative - drops number off list
 
