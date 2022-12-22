@@ -51,7 +51,7 @@ def part_1(monkey_names, input):
 
 #input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d21-input.txt')
 input = read_file("/home/christopher-spectre/Development/advent_of_code/2022/d21-input.txt")
-input = ['root: pppw + sjmn','dbpl: 5','cczh: sllz + lgvd','zczc: 2','ptdq: humn - dvpt','dvpt: 3','lfqf: 4','humn: 5','ljgn: 2','sjmn: drzm * dbpl','sllz: 4','pppw: cczh / lfqf','lgvd: ljgn * ptdq','drzm: hmdt - zczc','hmdt: 32']
+#input = ['root: pppw + sjmn','dbpl: 5','cczh: sllz + lgvd','zczc: 2','ptdq: humn - dvpt','dvpt: 3','lfqf: 4','humn: 5','ljgn: 2','sjmn: drzm * dbpl','sllz: 4','pppw: cczh / lfqf','lgvd: ljgn * ptdq','drzm: hmdt - zczc','hmdt: 32']
 
 monkey_names, input_dict = parse_input(input)
 print("Part 1: What number will the monkey named root yell?",part_1(monkey_names, input_dict))
