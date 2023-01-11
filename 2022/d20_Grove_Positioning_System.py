@@ -38,9 +38,10 @@ def part_1(data):
 
 	return sum
 
-#input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d20-input.txt')
+input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d20-input.txt')
 #input = read_file("/home/christopher-spectre/Development/advent_of_code/2022/d20-input.txt")
-input = [1,2,-3,3,-2,0,4] # Test data
+#input = [1,2,-3,3,-2,0,4] # Test data
+input = [int(i) for i in input]
 print(part_1(input))
 
 
