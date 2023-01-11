@@ -49,10 +49,33 @@ def part_1(monkey_names, input):
 
 	return input['root']
 
-input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d21-input.txt')
+#input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d21-input.txt')
 #input = read_file("/home/christopher-spectre/Development/advent_of_code/2022/d21-input.txt")
-#input = ['root: pppw + sjmn','dbpl: 5','cczh: sllz + lgvd','zczc: 2','ptdq: humn - dvpt','dvpt: 3','lfqf: 4','humn: 5','ljgn: 2','sjmn: drzm * dbpl','sllz: 4','pppw: cczh / lfqf','lgvd: ljgn * ptdq','drzm: hmdt - zczc','hmdt: 32']
+input = ['root: pppw + sjmn','dbpl: 5','cczh: sllz + lgvd','zczc: 2','ptdq: humn - dvpt','dvpt: 3','lfqf: 4','humn: 5','ljgn: 2','sjmn: drzm * dbpl','sllz: 4','pppw: cczh / lfqf','lgvd: ljgn * ptdq','drzm: hmdt - zczc','hmdt: 32']
 
 monkey_names, input_dict = parse_input(input)
 print("Part 1: What number will the monkey named root yell?",part_1(monkey_names, input_dict))
-
+#part 2
+monkey_names, input_dict = parse_input(input)
+#input_dict['humn'] = '301'
+while not (input_dict['root'].split()[0].isnumeric() and input_dict['root'].split()[2].isnumeric()):
+		for monkey in monkey_names:
+			if input_dict[monkey].isnumeric(): continue
+			if not input_dict[monkey].isnumeric():
+				first = input_dict[monkey].split()[0].strip()
+				last = input_dict[monkey].split()[2].strip()
+				operator = input_dict[monkey].split()[1].strip()
+				if monkey == 'root' and input_dict['root'].split()[0].strip():
+					if input_dict[first].isnumeric() and input_dict[last].isnumeric():
+						match operator:
+							case '+':
+								result = int(input_dict[first]) + int(input_dict[last])
+							case '-':
+								result = int(input_dict[first]) - int(input_dict[last])
+							case '*':
+								result = int(input_dict[first]) * int(input_dict[last])
+							case '/':
+								result = int(input_dict[first]) // int(input_dict[last])
+						input_dict[monkey] = str(result)
+print(result, input_dict['humn'])
+print(input_dict['root'])
