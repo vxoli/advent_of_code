@@ -61,9 +61,8 @@ def convert_decimal_to_snafu(decimal):
 
 input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d25-input.txt')
 #input = read_file("/home/christopher-spectre/Development/advent_of_code/2022/d25-input.txt")
-input = ['1=-0-2','12111','2=0=','21','2=01','111','20012','112','1=-1=','1-12','12','1=','122'] # Test data
+#input = ['1=-0-2','12111','2=0=','21','2=01','111','20012','112','1=-1=','1-12','12','1=','122'] # Test data
 sum = 0
 for digit in input:
 	sum += convert_snafu_to_decimal(digit)
-print(sum)
-print(convert_decimal_to_snafu(sum))
+print("What SNAFU number do you supply to Bob's console?",convert_decimal_to_snafu(sum))

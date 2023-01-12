@@ -98,4 +98,4 @@ The Elves are starting to get cold. What SNAFU number do you supply to Bob's con
 
 To begin, get your puzzle input.
 
-** Answer: **
+** Answer: 122-2=200-0111--=200 **
