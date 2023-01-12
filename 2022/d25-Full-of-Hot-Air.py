@@ -34,15 +34,36 @@ def convert_snafu_to_decimal(snafu):
 	return decimal
 
 def convert_decimal_to_snafu(decimal):
+	# 4890 -> 2=-1=0
+	# 4890 / 5 = 978 remainder 0
+	# 972 / 5 = 195 remainder 3
+	# 194 / 5 = 39 remainder 0
+	# 38 / 5 = 7 remainder 4
+	# 7 / 5 = 1 remainder 2
+	# 1 / 5 = 0 remainder 1
+	# base-5 -> 124030
+	# snafu -> 2=-1=0
+	
+	snafu = []
+	value = decimal
+	while value > 0:
+		value = value+2
+		remainder = value % 5
+		value = value // 5
+		match remainder:
+			case 0: snafu.insert(0, '=')
+			case 1: snafu.insert(0,'-')
+			case 2: snafu.insert(0,'0')
+			case 3: snafu.insert(0,'1')
+			case 4: snafu.insert(0,'2')
 
-	return
+	return (''.join(snafu))
 
 input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d25-input.txt')
 #input = read_file("/home/christopher-spectre/Development/advent_of_code/2022/d25-input.txt")
 input = ['1=-0-2','12111','2=0=','21','2=01','111','20012','112','1=-1=','1-12','12','1=','122'] # Test data
 sum = 0
 for digit in input:
-	print(convert_snafu_to_decimal(digit))
 	sum += convert_snafu_to_decimal(digit)
 print(sum)
 print(convert_decimal_to_snafu(sum))
