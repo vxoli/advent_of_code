@@ -17,6 +17,10 @@ def read_file(filename): # read from disk
 			data.append(int(line.strip()))
 	return data
 
+def swap(nums, a, b):
+	nums[a],nums[b]=nums[b],nums[a]
+	return nums
+
 def part_1(code):
 	moves = code.copy()
 	moves = [[int(i),'.'] for i in moves]
@@ -27,34 +31,22 @@ def part_1(code):
 			posn += 1
 		move = moves[posn]
 		num_to_move = move[0]
+#		if num_to_move == 0: continue
 		move_from = moves.index([move[0],'.'])
+		moves[posn] = [num_to_move,'x']
 		move_to = (move_from + num_to_move) % n
-		if num_to_move < 0:
-			move_to = (move_from + num_to_move + n -1) % n
-			first_part = moves[:move_from]
-			mid_part = moves[move_from+1:move_to+1]
-			end_part = moves[move_to+1:]
-			moves = first_part + mid_part + [[str(num_to_move),'x']] + end_part
-		elif move_to < move_from:
-			move_to += 1
-			first_part = moves[:move_to]
-			mid_part = moves[move_to:move_from]
-			end_part = moves[move_from+1:]
-			moves = first_part + [[str(num_to_move),'x']] + mid_part  + end_part
-		else:
-			first_part = moves[:move_from]
-			mid_part = moves[move_from+1:move_to+1]
-			end_part = moves[move_to+1:]
-			moves = first_part + mid_part + [[str(num_to_move),'x']] + end_part
-		print(len(moves))
-		print(move,posn,move_from,move_to)
+		difference = (move_to - move_from)%n
+		if num_to_move < 0: difference = (difference + n -1) % n
+		for i in range(difference):
+			moves = swap(moves,(i+posn)%n,(i+posn+1)%n)
+		if move_to-move_from<0 and num_to_move>0:
+			moves = [moves[n-1]] + moves[:n-1]
 
-		if len(moves) > 5000: break
 	# for i in (1000,2000,3000):
 	# 	print(int((moves[(i+moves.index('0'))%(len(moves))])))
 	# 	sum += int((moves[(i+moves.index('0'))%(len(moves))]))
 
-	return moves
+	return sum
 
 input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d20-input.txt')
 #input = read_file("/home/christopher-spectre/Development/advent_of_code/2022/d20-input.txt")
