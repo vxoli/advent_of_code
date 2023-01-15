@@ -39,7 +39,7 @@ def part_1(code):
 		if num_to_move < 0: difference = (difference + n -1) % n
 		for i in range(difference):
 			moves = swap(moves,(i+posn)%n,(i+posn+1)%n)
-		if move_to-move_from<0 and num_to_move>0:
+		if move_to-move_from<0:
 			moves = [moves[n-1]] + moves[:n-1]
 
 	index = moves.index([0,'x'])
