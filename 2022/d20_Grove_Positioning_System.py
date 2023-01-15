@@ -42,13 +42,15 @@ def part_1(code):
 		if move_to-move_from<0 and num_to_move>0:
 			moves = [moves[n-1]] + moves[:n-1]
 
-	# for i in (1000,2000,3000):
-	# 	print(int((moves[(i+moves.index('0'))%(len(moves))])))
-	# 	sum += int((moves[(i+moves.index('0'))%(len(moves))]))
+	index = moves.index([0,'x'])
+	sum = 0
+	for i in (1000,2000,3000):
+		print(int((moves[((i+index)%(len(moves)))][0])))
+		sum += int((moves[((i+index)%(len(moves)))][0]))
 
 	return sum
 
-input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d20-input.txt')
+#input = read_url('https://raw.githubusercontent.com/vxoli/adventofcode/main/2022/d20-input.txt')
 #input = read_file("/home/christopher-spectre/Development/advent_of_code/2022/d20-input.txt")
-#input = ['1','2','-3','3','-2','0','4'] # Test data
+input = ['1','2','-3','3','-2','0','4'] # Test data
 print("What is the sum of the three numbers that form the grove coordinates?",part_1(input))
