@@ -43,8 +43,9 @@ def part_1(code):
 			moves = [moves[n-1]] + moves[:n-1]
 
 	index = moves.index([0,'x'])
+	print(moves[index])
 	sum = 0
-	for i in (1000,2000,3000):
+	for i in (1001,2001,3001):
 		print(int((moves[((i+index)%(len(moves)))][0])))
 		sum += int((moves[((i+index)%(len(moves)))][0]))
 
