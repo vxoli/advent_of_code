@@ -19,10 +19,10 @@ def read_file(filename): # read from disk
 	return data
 
 
-#map, path = read_url('https://raw.githubusercontent.com/vxoli/advent_of_code/main/2022/d22-input.txt')
+#input = read_url('https://raw.githubusercontent.com/vxoli/advent_of_code/main/2022/d22-input.txt')
 input = read_file("/home/christopher-spectre/Development/advent_of_code/2022/d22-input.txt")
 
-input =['         ...#','        .#..','        #...','       ....','...#.......#','........#...','..#....#....','..........#.','        ...#....','        .....#..','        .#......','        ......#.','','10R5L5R10L4R5L5']
+#input =['         ...#','        .#..','        #...','       ....','...#.......#','........#...','..#....#....','..........#.','        ...#....','        .....#..','        .#......','        ......#.','','10R5L5R10L4R5L5']
 
 board = []
 for i in input[:-1]:
