@@ -68,13 +68,14 @@ for line in calibrationDocument:
 print("Part 1: Consider your entire calibration document. What is the sum of all of the calibration values?", sum)
 
 # Part 2
-calibrationDocument = ['two1nine',
+""" calibrationDocument = ['two1nine',
 'eightwothree',
 'abcone2threexyz',
 'xtwone3four',
 '4nineeightseven2',
 'zoneight234',
 '7pqrstsixteen']
+ """
 sum = 0
 for line in calibrationDocument:
     number = ""
