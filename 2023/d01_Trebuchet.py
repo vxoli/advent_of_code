@@ -48,7 +48,7 @@ def text2int(string):
       currentWord += char
       for s in list(numberWords.keys()):
         if s in currentWord:
-          result += numberWords.get(s.lower(), currentWord)
+          result += numberWords.get(s.lower())
           currentWord = ""
     else:
       result += char
@@ -78,8 +78,7 @@ print("Part 1: Consider your entire calibration document. What is the sum of all
  """
 sum = 0
 for line in calibrationDocument:
-    number = ""
     number = text2int(line)
     print(number,"|",number[0],"-",number[-1],"=", number[0]+number[-1])
     sum += int(number[0]+number[-1])
-print(sum)
+print("Part 2: What is the sum of all of the calibration values?", sum)
