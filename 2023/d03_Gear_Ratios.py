@@ -29,24 +29,39 @@ data = ['467..114..',
 '.664.598..']
 
 # PART 1
-directions = [(-1,-1),(-1,0),(-1,+1),(0,-1),(0,+1),(+1,-1),(+1,0),(+1,+1)]
+deltas = [(-1,-1),(0,-1),(+1,-1),(-1,0),(0,0),(+1,0),(-1,+1),(0,+1),(+1,+1)]
 for row, line in enumerate(data):
     # Look for a number
     number = ""
     columnStart = columnEnd = -1
     for column, char in enumerate(line):
         if char.isnumeric():
-            print(char,column)
             number += char
             columnStart = (column * (columnStart == -1)) + ((columnStart != -1) * min(columnStart, column))
             
         else:
             if number != "": # a number has been found
                 columnEnd = column-1
-                print(number, columnStart, columnEnd)
+                # now search around number
+                y = row
+                isPartNumber = False
+                for x in range(columnStart, columnEnd):
+                    for delta in deltas:
+                        new_x = x + int(delta[0])
+                        new_y = y + int(delta[1])
+                        if new_x < 0 or new_x > len(line)-1: continue
+                        if new_y < 0 or new_y > len(data)-1: continue
+                        print(data[new_y][new_x],isPartNumber)
+                        if data[new_y][new_x] in ['$','*','+','#']: 
+                            isPartNumber = True
+                            print(number,"is a partnumber")
+                            continue
+
+                    
                 number = ""
                 columnStart = columnEnd = -1
-                # now search around number 
+
+                    
                 
 
     # find start and end coordinated of number
