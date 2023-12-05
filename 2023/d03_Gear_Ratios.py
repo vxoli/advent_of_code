@@ -59,8 +59,7 @@ for row, line in enumerate(data):
                             isPartNumber = True
                             print(number,"is a partnumber")
                             break
-                    if isPartNumber == True:
-                        break
+
                 if isPartNumber == True:
                         break
 
