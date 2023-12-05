@@ -61,9 +61,6 @@ for row, line in enumerate(data):
                             break
                     if isPartNumber == True:
                         break
-                if isPartNumber == True:
-                        break
-
                     
                 number = ""
                 columnStart = columnEnd = -1
