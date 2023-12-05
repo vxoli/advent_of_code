@@ -29,3 +29,27 @@ data = ['467..114..',
 '.664.598..']
 
 # PART 1
+directions = [(-1,-1),(-1,0),(-1,+1),(0,-1),(0,+1),(+1,-1),(+1,0),(+1,+1)]
+for row, line in enumerate(data):
+    # Look for a number
+    number = ""
+    columnStart = columnEnd = -1
+    for column, char in enumerate(line):
+        if char.isnumeric():
+            print(char,column)
+            number += char
+            columnStart = (column * (columnStart == -1)) + ((columnStart != -1) * min(columnStart, column))
+            
+        else:
+            if number != "": # a number has been found
+                columnEnd = column-1
+                print(number, columnStart, columnEnd)
+                number = ""
+                columnStart = columnEnd = -1
+                # now search around number 
+                
+
+    # find start and end coordinated of number
+    # look for symbols around number
+    # if symbol add to sum
+    # if no symbol ignore
