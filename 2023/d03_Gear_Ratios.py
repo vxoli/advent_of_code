@@ -40,22 +40,29 @@ for row, line in enumerate(data):
             columnStart = (column * (columnStart == -1)) + ((columnStart != -1) * min(columnStart, column))
             
         else:
+            columnEnd = columnStart + len(number) - 1 
             if number != "": # a number has been found
-                columnEnd = column-1
+                # columnEnd = column-1
                 # now search around number
+                print(number,columnStart,columnEnd)
                 y = row
                 isPartNumber = False
-                for x in range(columnStart, columnEnd):
+                for x in range(columnStart, columnEnd+1):
                     for delta in deltas:
                         new_x = x + int(delta[0])
                         new_y = y + int(delta[1])
+                        print(x,y,new_x, new_y)
                         if new_x < 0 or new_x > len(line)-1: continue
                         if new_y < 0 or new_y > len(data)-1: continue
                         print(data[new_y][new_x],isPartNumber)
                         if data[new_y][new_x] in ['$','*','+','#']: 
                             isPartNumber = True
                             print(number,"is a partnumber")
-                            continue
+                            break
+                    if isPartNumber == True:
+                        break
+                if isPartNumber == True:
+                        break
 
                     
                 number = ""
