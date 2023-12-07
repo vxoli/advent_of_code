@@ -17,9 +17,9 @@ def read_data(filename):
 
 ## MAIN
 data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d06_input.txt")
-""" data = ['Time:      7  15   30',
+data = ['Time:      7  15   30',
 'Distance:  9  40  200']
- """# By newtonian mechanics: s = ut + 1/2at^2
+# By newtonian mechanics: s = ut + 1/2at^2
 # t(race) = t(button) + t(moving)
 # a=0 - constant speed once button released
 # u = 1 x t(button) (increases 1mm.ms^-1)
@@ -47,3 +47,20 @@ for counter, time in enumerate(times):
             sum += 1
     score = score * sum
 print("Determine the number of ways you could beat the record in each race. What do you get if you multiply these numbers together?", score)
+
+# Part 2
+# seperate out the distances and times and then concatenate into one time and one distance.
+times = data[0].split(":")[1].strip().split(" ")
+times = [x for x in times if x !=""]
+time = int(''.join(times))
+distances = data[1].split(":")[1].strip().split(" ")
+distances = [x for x in distances if x !=""]
+distance = int(''.join(distances))
+sum = 0
+for t in range(0,time):
+    t_button = t
+    t_move = time - t_button
+    s = t_button * time - pow(t_button,2)
+    if s > distance: 
+            sum += 1
+print("Determine the number of ways you could beat the record in each race. What do you get if you multiply these numbers together?", sum)
