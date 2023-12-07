@@ -36,7 +36,6 @@ times = data[0].split(":")[1].strip().split(" ")
 times = [int(x) for x in times if x !=""]
 distances = data[1].split(":")[1].strip().split(" ")
 distances = [int(x) for x in distances if x !=""]
-print(times, distances)
 score = 1
 for counter, time in enumerate(times):
     sum = 0
