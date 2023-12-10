@@ -22,8 +22,8 @@ data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/202
 'KK677 28',
 'KTJJT 220',
 'QQQJA 483']
- """
- # In Camel Cards, you get a list of hands, and your goal is to order them based on the strength of each hand. 
+"""
+# In Camel Cards, you get a list of hands, and your goal is to order them based on the strength of each hand. 
 # A hand consists of five cards labeled one of A, K, Q, J, T, 9, 8, 7, 6, 5, 4, 3, or 2. 
 # The relative strength of each card follows this order, where A is the highest and 2 is the lowest.
 # Every hand is exactly one type. From strongest to weakest, they are:
@@ -92,7 +92,7 @@ for hand in list(cardDict.keys()):
                 newcards.append('03')
             case '2':
                 newcards.append('02')
-    cardDict[hand].append(''.join(sorted(newcards,reverse=True)))
+    cardDict[hand].append(''.join(newcards))
 # now determine type of hand and score accordingly
     cards = []
     for label in ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2']:
@@ -122,13 +122,13 @@ for hand in list(cardDict.keys()):
             else:
                 # Bad Luck - prefix 0
                 cardDict[hand][1] = '0' + cardDict[hand][1]
-                cardDict[hand][0] = 0
-                
+                cardDict[hand][0] = 0 # losing hand so bid ignored.
+print(cardDict)
 sortedCards = dict(sorted(cardDict.values(), key=lambda x:x[1], reverse = True))
+print(sortedCards)
 rank = len(sortedCards.keys())
 total = 0
 for bid in sortedCards:
     total += int(bid) * rank
     rank -= 1
-
 print(total)
