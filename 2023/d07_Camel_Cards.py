@@ -98,8 +98,6 @@ for hand in list(cardDict.keys()):
     for label in ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2']:
         if hand.count(label) > 0:
             cards += ([(label,hand.count(label))])           
-    print(hand , cards)
- #   cardDict[hand].append(cards)
     match (max([x[1] for x in cards])):
         case 5:
             # Five of a kind - prefix 6
@@ -131,4 +129,5 @@ total = 0
 for bid in sortedCards:
     total += int(bid) * rank
     rank -= 1
+
 print(total)
