@@ -93,4 +93,36 @@ for hand in list(cardDict.keys()):
                 newcards.append('03')
             case '2':
                 newcards.append('02')
-    print(cards, sorted(newcards,reverse=True))
+    cardDict[hand].append(''.join(sorted(newcards,reverse=True)))
+# now determine type of hand and score accordingly
+    cards = []
+    for label in ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2']:
+        if hand.count(label) > 0:
+            cards += ([(label,hand.count(label))])           
+    print(hand , cards)
+ #   cardDict[hand].append(cards)
+    match (max([x[1] for x in cards])):
+        case 5:
+            # Five of a kind - prefix 6
+            cardDict[hand][1] = '6' + cardDict[hand][1]
+        case 4: 
+            # Four of a kind! - prefix 5
+            cardDict[hand][1] = '5' + cardDict[hand][1]
+        case 3:
+            # Three of a kind! - prefix 4
+            cardDict[hand][1] = '4' + cardDict[hand][1]
+        case 2: #two pairs or one pair
+            if [x[1] for x in cards].count(2) == 2: # two pairs
+                # Two pairs - prefix 3
+                cardDict[hand][1] = '3' + cardDict[hand][1]
+            else:
+                # One pair - prefix 2
+                cardDict[hand][1] = '2' + cardDict[hand][1]
+        case 1: # need to check if 5 1's and cards sequential
+            if (sorted([hand[0],hand[1],hand[2],hand[3],hand[4]]) == sorted(['A', 'K', 'Q', 'J', 'T'])) or (sorted([hand[0],hand[1],hand[2],hand[3],hand[4]]) == sorted(['K', 'Q', 'J', 'T', '9'])) or (sorted([hand[0],hand[1],hand[2],hand[3],hand[4]]) == sorted(['Q', 'J', 'T', '9', '8'])) or (sorted([hand[0],hand[1],hand[2],hand[3],hand[4]]) == sorted(['J', 'T', '9', '8', '7'])) or (sorted([hand[0],hand[1],hand[2],hand[3],hand[4]]) == sorted(['T', '9', '8', '7', '6'])) or (sorted([hand[0],hand[1],hand[2],hand[3],hand[4]]) == sorted(['9', '8', '7', '6', '5'])) or (sorted([hand[0],hand[1],hand[2],hand[3],hand[4]]) == sorted(['8', '7', '6', '5', '4'])) or (sorted([hand[0],hand[1],hand[2],hand[3],hand[4]]) == sorted(['7', '6', '5', '4', '3'])) or (sorted([hand[0],hand[1],hand[2],hand[3],hand[4]]) == sorted(['6', '5', '4', '3', '2'])):
+                # High Hand - prefix 1
+                cardDict[hand][1] = '1' + cardDict[hand][1]
+            else:
+                # Bad Luck - prefix 0
+                cardDict[hand][1] = '0' + cardDict[hand][1]
+                
