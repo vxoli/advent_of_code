@@ -17,12 +17,13 @@ def read_data(filename):
 
 ## MAIN
 data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d07_input.txt")
-data = ['32T3K 765',
+""" data = ['32T3K 765',
 'T55J5 684',
 'KK677 28',
 'KTJJT 220',
 'QQQJA 483']
-# In Camel Cards, you get a list of hands, and your goal is to order them based on the strength of each hand. 
+ """
+ # In Camel Cards, you get a list of hands, and your goal is to order them based on the strength of each hand. 
 # A hand consists of five cards labeled one of A, K, Q, J, T, 9, 8, 7, 6, 5, 4, 3, or 2. 
 # The relative strength of each card follows this order, where A is the highest and 2 is the lowest.
 # Every hand is exactly one type. From strongest to weakest, they are:
