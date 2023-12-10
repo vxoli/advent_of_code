@@ -23,7 +23,7 @@ data = ['32T3K 765',
 'KTJJT 220',
 'QQQJA 483',
 '73456 12',
-'12356 11']
+'72356 11']
 # In Camel Cards, you get a list of hands, and your goal is to order them based on the strength of each hand. 
 # A hand consists of five cards labeled one of A, K, Q, J, T, 9, 8, 7, 6, 5, 4, 3, or 2. 
 # The relative strength of each card follows this order, where A is the highest and 2 is the lowest.
@@ -59,29 +59,38 @@ cardDict = dict([(x.split(' ')[0], [x.split(' ')[1]]) for x in data])
 # sort cards based on hand type
 # first count the number of same cards in the hand
 # store the card label and the number of them in cardDict
-for card in list(cardDict.keys()):
+
+for hand in list(cardDict.keys()):
     cards = []
-    for label in ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2']:
-        if card.count(label) > 0:
-            cards += ([(label,card.count(label))])
-            
-    print(card , cards)
-    cardDict[card].append(cards)
-    match (max([x[1] for x in cards])):
-        case 5:
-            print("Five of a kind!")
-        case 4: 
-            print("Four of a kind!")
-        case 3:
-            print("Three of a kind!")
-        case 2: #two pairs or one pair
-            if [x[1] for x in cards].count(2) == 2: # two pairs
-                print("Two Pairs")
-            else:
-                print("One pair")
-        case 1: # need to check if 5 1's and cards sequential
-            if (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['A', 'K', 'Q', 'J', 'T'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['K', 'Q', 'J', 'T', '9'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['Q', 'J', 'T', '9', '8'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['J', 'T', '9', '8', '7'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['T', '9', '8', '7', '6'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['9', '8', '7', '6', '5'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['8', '7', '6', '5', '4'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['7', '6', '5', '4', '3'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['6', '5', '4', '3', '2'])):
-                print("High Hand")
-            else:
-                print("Bad Luck!")
-                
+# covert alpha cards to numeric and add leading zero to numerics 2-9
+    newcards = []
+    cards = list(hand)
+    for card in cards:
+        match card:
+            case 'A':
+                newcards.append('14')
+            case 'K':
+                newcards.append('13')
+            case 'Q':
+                newcards.append('12')
+            case 'J':
+                newcards.append('11')
+            case 'T':
+                newcards.append('10')
+            case '9':
+                newcards.append('09')
+            case '8':
+                newcards.append('08')
+            case '7':
+                newcards.append('07')
+            case '6':
+                newcards.append('06')
+            case '5':
+                newcards.append('05')
+            case '4':
+                newcards.append('04')
+            case '3':
+                newcards.append('03')
+            case '2':
+                newcards.append('02')
+    print(cards, sorted(newcards,reverse=True))
