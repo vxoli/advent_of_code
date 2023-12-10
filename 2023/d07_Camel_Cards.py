@@ -52,7 +52,7 @@ data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/202
 # (765 * 1 + 220 * 2 + 28 * 3 + 684 * 4 + 483 * 5). So the total winnings in this example are 6440.
 
 # put cards into dictioary, so later can refer back and match bid values
-cardDict = dict([(x.split(' ')[0], [x.split(' ')[1]]) for x in data])
+cardDict = dict([(x.split(' ')[0], [int(x.split(' ')[1])]) for x in data])
 # seperate out the cards played from the bid values
 
 # sort cards based on hand type
@@ -122,13 +122,12 @@ for hand in list(cardDict.keys()):
             else:
                 # Bad Luck - prefix 0
                 cardDict[hand][1] = '0' + cardDict[hand][1]
-                cardDict[hand][0] = 0 # losing hand so bid ignored.
-print(cardDict)
+cardDict = {key: [val[0],int(val[1])] for key, val in cardDict.items()}
 sortedCards = dict(sorted(cardDict.values(), key=lambda x:x[1], reverse = True))
-print(sortedCards)
-rank = len(sortedCards.keys())
+rank = len(sortedCards.keys())+1
+
 total = 0
 for bid in sortedCards:
-    total += int(bid) * rank
+    total += bid * rank
     rank -= 1
 print(total)
