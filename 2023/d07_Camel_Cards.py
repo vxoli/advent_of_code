@@ -21,9 +21,7 @@ data = ['32T3K 765',
 'T55J5 684',
 'KK677 28',
 'KTJJT 220',
-'QQQJA 483',
-'73456 12',
-'72356 11']
+'QQQJA 483']
 # In Camel Cards, you get a list of hands, and your goal is to order them based on the strength of each hand. 
 # A hand consists of five cards labeled one of A, K, Q, J, T, 9, 8, 7, 6, 5, 4, 3, or 2. 
 # The relative strength of each card follows this order, where A is the highest and 2 is the lowest.
@@ -126,3 +124,10 @@ for hand in list(cardDict.keys()):
                 # Bad Luck - prefix 0
                 cardDict[hand][1] = '0' + cardDict[hand][1]
                 
+sortedCards = dict(sorted(cardDict.values(), key=lambda x:x[1], reverse = True))
+rank = len(sortedCards.keys())
+total = 0
+for bid in sortedCards:
+    total += int(bid) * rank
+    rank -= 1
+print(total)
