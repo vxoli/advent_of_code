@@ -22,7 +22,8 @@ data = ['32T3K 765',
 'KK677 28',
 'KTJJT 220',
 'QQQJA 483',
-'73456 12']
+'73456 12',
+'12356 11']
 # In Camel Cards, you get a list of hands, and your goal is to order them based on the strength of each hand. 
 # A hand consists of five cards labeled one of A, K, Q, J, T, 9, 8, 7, 6, 5, 4, 3, or 2. 
 # The relative strength of each card follows this order, where A is the highest and 2 is the lowest.
@@ -79,6 +80,8 @@ for card in list(cardDict.keys()):
             else:
                 print("One pair")
         case 1: # need to check if 5 1's and cards sequential
-            print(sorted([card[0],card[1],card[2],card[3],card[4]]))
-            if (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['A', 'K', 'Q', 'J', 'T'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['K', 'Q', 'J', 'T', '9'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['Q', 'J', 'T', '9', '8'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['J', 'T', '9', '8', '7'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['T', '9', '8', '7', '6'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['9', '8', '7', '6', '5'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['8', '7', '6', '5', '4'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['7', '6', '5', '4', '3'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sort(['6', '5', '4', '3', '2'])):
+            if (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['A', 'K', 'Q', 'J', 'T'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['K', 'Q', 'J', 'T', '9'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['Q', 'J', 'T', '9', '8'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['J', 'T', '9', '8', '7'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['T', '9', '8', '7', '6'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['9', '8', '7', '6', '5'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['8', '7', '6', '5', '4'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['7', '6', '5', '4', '3'])) or (sorted([card[0],card[1],card[2],card[3],card[4]]) == sorted(['6', '5', '4', '3', '2'])):
                 print("High Hand")
+            else:
+                print("Bad Luck!")
+                
