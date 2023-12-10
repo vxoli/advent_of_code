@@ -122,6 +122,7 @@ for hand in list(cardDict.keys()):
             else:
                 # Bad Luck - prefix 0
                 cardDict[hand][1] = '0' + cardDict[hand][1]
+                cardDict[hand][0] = 0
                 
 sortedCards = dict(sorted(cardDict.values(), key=lambda x:x[1], reverse = True))
 rank = len(sortedCards.keys())
