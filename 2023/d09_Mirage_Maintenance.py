@@ -16,10 +16,10 @@ def read_data(filename):
     return lines
 
 ## MAIN
-data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d08_input.txt")
+data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d09_input.txt")
 
 # PART 1
-data = [[0, 3, 6, 9, 12, 15,],[1, 3, 6, 10, 15, 21],[10, 13, 16, 21, 30, 45]]
+# data = [[0, 3, 6, 9, 12, 15,],[1, 3, 6, 10, 15, 21],[10, 13, 16, 21, 30, 45]]
 total = 0
 for line in data:
     index = 0
@@ -35,6 +35,5 @@ for line in data:
     for i in reversed(differences[0:len(differences)-1]):
         predictedNext = newDiff + i[-1]
         newDiff = predictedNext
-    print(predictedNext-lastDiff)
     total += predictedNext-lastDiff
 print(total)
