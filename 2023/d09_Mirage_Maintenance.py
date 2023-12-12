@@ -17,6 +17,10 @@ def read_data(filename):
 
 ## MAIN
 data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d09_input.txt")
+# convert strings to int
+for i, line in enumerate(data):
+    newline = [eval(x) for x in line.split(" ")]
+    data[i] = newline
 
 # PART 1
 # data = [[0, 3, 6, 9, 12, 15,],[1, 3, 6, 10, 15, 21],[10, 13, 16, 21, 30, 45]]
