@@ -15,6 +15,63 @@ def read_data(filename):
     file.close()
     return lines
 
+def startMove(row, col, pipe):
+    for direction in list(directions.keys()):
+        nextPipe = data[row+directions[direction][0]][col + directions[direction][1]]
+        print(direction, nextPipe)
+        # if valid move then store and break loop
+        if direction == 'U' and nextPipe in ['|','7','F']:
+            match nextPipe:
+                case '|':
+                    row -= 1
+                    col = col
+                    pipe = nextPipe
+                case '7':
+                    row -= 1
+                    col -= 1
+                    pipe = nextPipe
+                case 'F':
+                    row -=1
+                    col += 1
+                    pipe = nextPipe
+            break
+        if direction == 'R' and nextPipe in ['-','7']:
+            match nextPipe:
+                case '-':
+                    row = row
+                    col += 1
+                    pipe = nextPipe
+                case '7':
+                    row += 1 
+                    col += 1
+                    pipe = nextPipe
+            break
+        if direction == 'D' and nextPipe in ['|','J','L']:
+            match nextPipe:
+                case '|':
+                    row = row
+                    col += 1
+                    pipe = nextPipe
+                case 'J':
+                    row -= 1
+                    col += 1
+                    pipe = nextPipe
+                case 'L':
+                    row += 1
+                    col += 1
+                    pipe = nextPipe
+            break
+        if direction == 'L' and nextPipe in ['-', 'F']:
+            match nextPipe:
+                case '-':
+                    row = row
+                    col -= 1
+                    pipe = nextPipe
+            break
+    pipe = nextPipe
+    print(row, col, pipe)
+    return(row, col, pipe)
+
 ## MAIN
 data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d10_input.txt")
 data = ['.....','.S-7.','.|.|.','.L-J.','.....']
@@ -33,80 +90,34 @@ nextPipe = ""
 row = rowS
 col = colS
 i=0
-while i < 12:
-    direction = list(directions.keys())[i%4]
-    i += 1
-    print(nextPipe, direction)
-    nextPipe = data[row+directions[direction][0]][col+directions[direction][1]]
-    match direction:
-    #if direction == 'U':
-        # only | 7 F are valid
-        case 'U':
-            match nextPipe:
-                case '|':
-                    print("U&|")
-                    row -= 1
-                    col = col
-                    pipe = nextPipe
-                    nextPipe = data[row][col]
-                case '7':
-                    print("U&7")
-                    col = col
-                    row += 1
-                case 'F':
-                    print("F") 
-    #if direction == 'R':
-        # only - 7 J  are valid
-        case 'R':
-            match nextPipe:
-                case '7':
-                    print("R&7")
-                    row += 1
-                    col += 1
-                    pipe = nextPipe
-                    nextPipe = data[row][col]
-                    print("***",pipe, nextPipe,row,col)
-                case 'F':
-                    print('J')
-                case '-':
-                    print("R&-")
-                    row = row
-                    col += 1
-                    pipe = nextPipe
-                    nextPipe = data[row][col]
-                    print("***",pipe, nextPipe,row,col)                                        
-    #if direction == 'D':
-        # only | L J are valid
-        case 'D':
-            match nextPipe:
-                case "|":
-                    print("D&|")
-                    row += 1
-                    col = col
-                    pipe = nextPipe
-                    nextPipe = data[row][col]
-                case 'L':
-                    print("D&L")
-                case 'J':
-                    print("D&J")
-                    row += 1
-                    col -= 1
-                    pipe = nextPipe
-                    nextPipe = data[row][col]
-    #if direction == 'L':
-        # only - F L are valid
+# look for valid 1st pipe off starting point
+row,col,pipe = startMove(rowS, colS, 'S')
+
+# now follow the route
+while i < 10:
+    match pipe:
+        case '-':
+            row =row
+            col += 1
+        case '|':
+            row += 1
+            col = col
         case 'L':
-            match nextPipe:
-                case "-":
-                    print("-")
-                case "F":
-                    print("F")
-                case "L":
-                    print("L")
-                    row = row
-                    col -= 1
-                    pipe = nextPipe
-                    nextPipe = data[row][col]
- 
+            row += 1
+            col += 1
+        case 'J':
+            row = row
+            col -= 1
+        case '7':
+            row += 1
+            col = col
+        case 'F':
+            row -= 1
+            col += 1
+    pipe = data[row][col]
+    print(row,col,pipe,i)
+    i += 1
+
+        
+            
 # once back to S count number of moves and divide by 2.
-print(i, nextPipe)
