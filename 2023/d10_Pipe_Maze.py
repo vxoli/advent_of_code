@@ -27,17 +27,86 @@ for row, line in enumerate(data):
         rowS = row
         colS = line.index('S')
 pipe = [('S',(rowS,colS))]
+nextPipe = ""
 # scan around clockwise and find next possible connected pipe
 # move to next point based - store co-ordinates etc...
-for direction in directions.keys():
-    nextPipe = data[rowS+directions[direction][0]][colS+directions[direction][1]]
+row = rowS
+col = colS
+i=0
+while i < 12:
+    direction = list(directions.keys())[i%4]
+    i += 1
+    print(nextPipe, direction)
+    nextPipe = data[row+directions[direction][0]][col+directions[direction][1]]
+    match direction:
     #if direction == 'U':
         # only | 7 F are valid
+        case 'U':
+            match nextPipe:
+                case '|':
+                    print("U&|")
+                    row -= 1
+                    col = col
+                    pipe = nextPipe
+                    nextPipe = data[row][col]
+                case '7':
+                    print("U&7")
+                    col = col
+                    row += 1
+                case 'F':
+                    print("F") 
     #if direction == 'R':
-        # only - L F  are valid
+        # only - 7 J  are valid
+        case 'R':
+            match nextPipe:
+                case '7':
+                    print("R&7")
+                    row += 1
+                    col += 1
+                    pipe = nextPipe
+                    nextPipe = data[row][col]
+                    print("***",pipe, nextPipe,row,col)
+                case 'F':
+                    print('J')
+                case '-':
+                    print("R&-")
+                    row = row
+                    col += 1
+                    pipe = nextPipe
+                    nextPipe = data[row][col]
+                    print("***",pipe, nextPipe,row,col)                                        
     #if direction == 'D':
         # only | L J are valid
+        case 'D':
+            match nextPipe:
+                case "|":
+                    print("D&|")
+                    row += 1
+                    col = col
+                    pipe = nextPipe
+                    nextPipe = data[row][col]
+                case 'L':
+                    print("D&L")
+                case 'J':
+                    print("D&J")
+                    row += 1
+                    col -= 1
+                    pipe = nextPipe
+                    nextPipe = data[row][col]
     #if direction == 'L':
-        # only - 7 J are valid
-
+        # only - F L are valid
+        case 'L':
+            match nextPipe:
+                case "-":
+                    print("-")
+                case "F":
+                    print("F")
+                case "L":
+                    print("L")
+                    row = row
+                    col -= 1
+                    pipe = nextPipe
+                    nextPipe = data[row][col]
+ 
 # once back to S count number of moves and divide by 2.
+print(i, nextPipe)
