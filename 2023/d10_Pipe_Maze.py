@@ -74,8 +74,8 @@ def startMove(row, col, pipe):
 
 ## MAIN
 data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d10_input.txt")
-data = ['.....','.S-7.','.|.|.','.L-J.','.....']
-data = ['7-F7-','.FJ|7','SJLL7','|F--J','LJ.LJ']
+#data = ['.....','.S-7.','.|.|.','.L-J.','.....']
+#data = ['7-F7-','.FJ|7','SJLL7','|F--J','LJ.LJ']
 # define movements in a dict (pipe : (dx,dy))
 pipes = dict([('|',(0,1)),('-',(1,0)),('L',(1,0)),('J',(-1,0)),('7',()),('F',()),('.',()),('S',())])
 directions = dict([('U',(-1,0)), ('R', (0,1)), ('D', (1,0)), ('L', (0,-1))])
@@ -96,7 +96,7 @@ i=1
 row,col,pipe, lastMove = startMove(rowS, colS, 'S')
 print(row,col)
 # now follow the route
-while (pipe != 'S') and (i < 16):
+while (pipe != 'S'):
 
     match pipe:
         case '-':
