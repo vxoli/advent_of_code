@@ -18,7 +18,6 @@ def read_data(filename):
 def startMove(row, col, pipe):
     for direction in list(directions.keys()):
         nextPipe = data[row+directions[direction][0]][col + directions[direction][1]]
-        print(direction, nextPipe)
         # if valid move then store and break loop
         if direction == 'U' and nextPipe in ['|','7','F']:
             match nextPipe:
@@ -69,7 +68,6 @@ def startMove(row, col, pipe):
                     pipe = nextPipe
             break
     pipe = nextPipe
-    print(row, col, pipe)
     return(row, col, pipe, direction)
 
 ## MAIN
@@ -85,7 +83,6 @@ for row, line in enumerate(data):
         rowS = row
         colS = line.index('S')
 pipe = [('S',(rowS,colS))]
-print(pipe)
 nextPipe = ""
 # scan around clockwise and find next possible connected pipe
 # move to next point based - store co-ordinates etc...
@@ -94,7 +91,6 @@ col = colS
 i=1
 # look for valid 1st pipe off starting point
 row,col,pipe, lastMove = startMove(rowS, colS, 'S')
-print(row,col)
 # now follow the route
 while (pipe != 'S'):
 
@@ -150,12 +146,9 @@ while (pipe != 'S'):
                 col = col
                 lastMove = 'D'
     pipe = data[row][col]
-    
-    print(row,col,pipe,i)
     i += 1
 
         
             
 # once back to S count number of moves and divide by 2.
-print(row,col,pipe,i)
 print("Part 1: How many steps along the loop does it take to get from the starting position to the point farthest from the starting position?", int(i/2))
