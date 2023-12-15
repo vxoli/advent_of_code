@@ -17,7 +17,7 @@ def read_data(filename):
 
 # MAIN
 data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d11_input.txt")
-data = ['...#......',
+""" data = ['...#......',
 '.......#..',
 '#.........',
 '..........',
@@ -26,7 +26,7 @@ data = ['...#......',
 '.........#',
 '..........',
 '.......#..',
-'#...#.....']
+'#...#.....'] """
 # look for rows with no galaxies and double
 universe = []
 for row in data:
