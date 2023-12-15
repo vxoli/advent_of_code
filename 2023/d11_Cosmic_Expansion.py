@@ -43,3 +43,20 @@ for row in rotated:
         universe.append(row)
 # rotate back
 universe = list(zip(*universe))[::-1]
+# now have each point in universe as a tuple
+# convert tuples back to list of strings
+newUniverse = []
+for row in universe:
+    newUniverse.append(''.join(row))
+# count universes and store location in dict (n: (x,y))
+i = 1
+galaxies = dict()
+for n,row in enumerate(newUniverse):
+    for m, char in enumerate(row):
+        if char == "#":
+            galaxies[i] = (n,m)
+            i += 1
+print(n,galaxies)
+# iterate over pairs
+# calculate distance between min (dx+dy),(dy+dx)
+# keep total sum
