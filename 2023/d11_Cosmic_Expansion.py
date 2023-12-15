@@ -17,7 +17,7 @@ def read_data(filename):
 
 # MAIN
 data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d11_input.txt")
-""" data = ['...#......',
+data = ['...#......',
 '.......#..',
 '#.........',
 '..........',
@@ -26,7 +26,7 @@ data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/202
 '.........#',
 '..........',
 '.......#..',
-'#...#.....'] """
+'#...#.....']
 # look for rows with no galaxies and double
 universe = []
 for row in data:
@@ -66,3 +66,54 @@ for i in galaxies.keys():
         dy = abs(galaxies[j][1] - galaxies[i][1])
         dist += dx + dy
 print("Part 1: What is the sum of these lengths?",dist)
+
+# Part 2
+# look for rows with no galaxies and double
+universe = []
+for row in data:
+    universe.append(row)
+    if '#' not in row:
+        for i in range(1000000-1):
+            universe.append(row)
+print("Finished first expansion")
+print("Begin rotation")
+# rotate 90 degrees
+rotated = list(zip(*universe[::-1]))
+print("First rotation complete")
+# look for rows with no galaxies again and double them
+universe = []
+for row in rotated:
+    universe.append(row)
+    if '#' not in row:
+        for i in range (1000000-1):
+            universe.append(row)
+print("Second rotation begin")
+# rotate back
+universe = list(zip(*universe))[::-1]
+print("second rotation complete")
+# now have each point in universe as a tuple
+# convert tuples back to list of strings
+newUniverse = []
+print("Start convert to list")
+for row in universe:
+    newUniverse.append(''.join(row))
+# count universes and store location in dict (n: (x,y))
+i = 1
+galaxies = dict()
+print("Counting galaxies")
+for n,row in enumerate(newUniverse):
+    for m, char in enumerate(row):
+        if char == "#":
+            galaxies[i] = (n,m)
+            i += 1
+# iterate over pairs
+# calculate distance between min (dx+dy),(dy+dx)
+# keep total sum
+dist = 0
+print("Calculating distance")
+for i in galaxies.keys():
+    for j in range(i+1,max(galaxies.keys())+1):
+        dx = abs(galaxies[j][0] - galaxies[i][0])
+        dy = abs(galaxies[j][1] - galaxies[i][1])
+        dist += dx + dy
+print("Part 2: What is the sum of these lengths?",dist)
