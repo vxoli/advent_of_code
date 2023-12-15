@@ -29,10 +29,17 @@ data = ['...#......',
 '#...#.....']
 # look for rows with no galaxies and double
 universe = []
-for i,row in enumerate(data):
+for row in data:
     universe.append(row)
     if '#' not in row:
-        print("Row",i,"No galaxy")
         universe.append(row)
-print(universe)    
-#then look for columsn with no galaxies and double them
+# rotate 90 degrees
+rotated = list(zip(*universe[::-1]))
+# look for rows with no galaxies again and double them
+universe = []
+for row in rotated:
+    universe.append(row)
+    if '#' not in row:
+        universe.append(row)
+# rotate back
+universe = list(zip(*universe))[::-1]
