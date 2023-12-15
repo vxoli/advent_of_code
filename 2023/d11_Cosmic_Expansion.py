@@ -56,7 +56,13 @@ for n,row in enumerate(newUniverse):
         if char == "#":
             galaxies[i] = (n,m)
             i += 1
-print(n,galaxies)
 # iterate over pairs
 # calculate distance between min (dx+dy),(dy+dx)
 # keep total sum
+dist = 0
+for i in galaxies.keys():
+    for j in range(i+1,max(galaxies.keys())+1):
+        dx = abs(galaxies[j][0] - galaxies[i][0])
+        dy = abs(galaxies[j][1] - galaxies[i][1])
+        dist += dx + dy
+print("Part 1: What is the sum of these lengths?",dist)
