@@ -88,7 +88,7 @@ In this example, after expanding the universe, the sum of the shortest path betw
 
 Expand the universe, then find the length of the shortest path between every pair of galaxies. What is the sum of these lengths?
 
-our puzzle answer was 9214785.
+Your puzzle answer was 9214785.
 
 The first half of this puzzle is complete! It provides one gold star: *
 
