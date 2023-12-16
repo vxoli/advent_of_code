@@ -29,48 +29,19 @@ data = ['467..114..',
 '.664.598..']
 
 # PART 1
-deltas = [(-1,-1),(0,-1),(+1,-1),(-1,0),(0,0),(+1,0),(-1,+1),(0,+1),(+1,+1)]
-for row, line in enumerate(data):
-    # Look for a number
-    number = ""
-    columnStart = columnEnd = -1
-    for column, char in enumerate(line):
-        if char.isnumeric():
-            number += char
-            columnStart = (column * (columnStart == -1)) + ((columnStart != -1) * min(columnStart, column))
-            
-        else:
-            columnEnd = columnStart + len(number) - 1 
-            if number != "": # a number has been found
-                # columnEnd = column-1
-                # now search around number
-                print(number,columnStart,columnEnd)
-                y = row
-                isPartNumber = False
-                for x in range(columnStart, columnEnd+1):
-                    for delta in deltas:
-                        new_x = x + int(delta[0])
-                        new_y = y + int(delta[1])
-                        print(x,y,new_x, new_y)
-                        if new_x < 0 or new_x > len(line)-1: continue
-                        if new_y < 0 or new_y > len(data)-1: continue
-                        print(data[new_y][new_x],isPartNumber)
-                        if data[new_y][new_x] in ['$','*','+','#']: 
-                            isPartNumber = True
-                            print(number,"is a partnumber")
-                            break
+# search across each row - if a number found then look for symbols above or below or next to it.
+# if no numbers - ignore
+# if there are numbers add the number to the total
 
-                if isPartNumber == True:
-                        break
-
-                    
-                number = ""
-                columnStart = columnEnd = -1
-
-                    
-                
-
-    # find start and end coordinated of number
-    # look for symbols around number
-    # if symbol add to sum
-    # if no symbol ignore
+print(data)
+numbers = []
+for y,row in enumerate(data):
+    numStr = ""
+    for x,char in enumerate(row):
+        if char in ['0','1','2','3','4','5','6','7','8','9']:
+            numStr += char
+        if char in ['.','!','@','#','$','%','^','&','*','(',')'] and numStr != "":
+            numbers.append(numStr)
+            numStr = ""
+ 
+    print(numbers)
