@@ -26,8 +26,7 @@ data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/202
 '..592.....',
 '......755.',
 '...$.*....',
-'.664.598..']
- """
+'.664.598..'] """
 # PART 1
 # search across each row - if a number found then add to list with co-ordinates
 
@@ -37,7 +36,7 @@ for y,row in enumerate(data):
     for x,char in enumerate(row):
         if char in ['0','1','2','3','4','5','6','7','8','9']:
             numStr += char
-        if char in ['!','@','#','$','%','^','&','*','(',')','+','=','/','?','~','`','{','}','[',']','|',':',';','<','>',',','.'] and numStr != "":
+        if char in ['~','`','!','@','#','$','%','^','&','*','(',')','_','-','+','=','{','[','}',']','|',':',';','"',"'",'<',',','>','.','?','/'] and numStr != "":
             numbers.append((numStr,(x-len(numStr),y)))
             numStr = ""
  
@@ -56,8 +55,6 @@ for value in numbers:
     yEnd = ((y+1)<=len(data)-1)*(y+1) + ((y+1)>len(data)-1)*y
     for x in range(xStart,xEnd+1):
         for y in range(yStart,yEnd+1):
-            addNumber = 0
-            if data[y][x] in ['!','@','#','$','%','^','&','*','(',')','+','=','/','?','~','`','{','}','[',']','|',':',';','<','>',',']:
-                addNumber=1
-                total += int(number)*addNumber
+            if data[y][x] in ['~','`','!','@','#','$','%','^','&','*','(',')','_','-','+','=','{','[','}',']','|',':',';','"',"'",'<',',','>','?','/']:
+                total += int(number)
 print("Part 1: What is the sum of all of the part numbers in the engine schematic?",total)
