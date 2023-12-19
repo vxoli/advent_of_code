@@ -27,22 +27,25 @@ data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/202
 '......755.',
 '...$.*....',
 '.664.598..'] """
-# PART 1
-# search across each row - if a number found then add to list with co-ordinates
 
+# PART 1
+# find the symbols in teh data set and store in a set
+symbols = {char for row in data for char in row if not char.isnumeric()}
+# search across each row - if a number found then add to list with co-ordinates
 numbers = []
 for y,row in enumerate(data):
     numStr = ""
     for x,char in enumerate(row):
-        if char in ['0','1','2','3','4','5','6','7','8','9']:
+        if char.isnumeric():
             numStr += char
-        if char in ['~','`','!','@','#','$','%','^','&','*','(',')','_','-','+','=','{','[','}',']','|',':',';','"','\'','<',',','>','.','?','/','\\'] and numStr != "":
+        if char in symbols and numStr != "":
             numbers.append((numStr,(x-len(numStr),y)))
             numStr = ""
  
 # now look for symbols above or below or next to the numbers.
 # if there are symbols add the number to the total
 total = 0
+#symbols.discard('.') # need to drop the '.' from the symbols set
 for value in numbers:
     number = value[0]
     coords = value[1]
@@ -53,8 +56,6 @@ for value in numbers:
     xEnd = ((xEnd +1) > (len(data[0])-1) * (xEnd)) + (((xEnd +1) <= len(data[0])-1) * (xEnd+1))
     yStart = ((y-1)>=0)*(y-1) + ((y-1)<0)*0 
     yEnd = ((y+1)<=len(data)-1)*(y+1) + ((y+1)>len(data)-1)*y
-    for x in range(xStart,xEnd+1):
-        for y in range(yStart,yEnd+1):
-            if data[y][x] in ['~','`','!','@','#','$','%','^','&','*','(',')','_','-','+','=','{','[','}',']','|',':',';','"','\'','<',',','>','?','/','\\']:
-                total += int(number)
+    total += sum(int(number) for y in range(yStart, yEnd + 1) for x in range(xStart, xEnd + 1) if data[y][x] in symbols)
+
 print("Part 1: What is the sum of all of the part numbers in the engine schematic?",total)
