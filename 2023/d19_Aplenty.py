@@ -46,5 +46,9 @@ for rating in partRatings:
                 if '>' in test:
                     symbol = '>'
                     parameter, value = test.split('>')
+                # convert the ratings to dictionary to make selecting the parameter easier
+                ratings = {r.split('=')[0]: r.split('=')[1] for r in rating.split(',')}
+                
                 # perform the comparison and return the result
+                
                 
