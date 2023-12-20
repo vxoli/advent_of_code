@@ -15,14 +15,11 @@ def read_url(url):
     workFlows = data[:blankRow]
     partRatings = data[blankRow+1:]
         
-    return (workFlows,partRatings)
+    return workFlows,partRatings
 
-def read_data(filename):
-    with open(filename) as file:
-        lines = list(map(str, file.readlines()))
-    file.close()
-    return lines
 
 # MAIN
-(workFlows, partRatings) = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d19_input.txt")
+workFlows, partRatings = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d19_input.txt")
+
+
 
