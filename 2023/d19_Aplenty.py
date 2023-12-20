@@ -27,56 +27,24 @@ def read_url(url):
 workFlows, partRatings = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d19_input.txt")
 action = ''
 flow = 'in' # all workFlows start with flow called 'in'
-for rating in partRatings[0]:
+for rating in partRatings:
+    # select the starting conditions
     while action not in ['A','R']:
         conditions = workFlows[flow]
-        print(rating)
-        print(conditions)
+    # loop through the list of conditions
+    # there may be an unconditional branch with no condition - need to deal with that
         for condition in conditions:
-            # check if element contains single instruction - this will be either new workflow name or A or R
-            if len(condition.split(':')) == 1:
-                test, action = '_', condition.split(':')[0]
+            if ':' not in condition: # these are the unconditional branches
+                flow = condition # the condition will contain the flow name to branch to -> update the flow
             else:
+                # seperate the condition into the parameter to check, the symbol < or > and the value
                 test = condition.split(':')[0]
                 action = condition.split(':')[1]
-            
-            # now perform test and execute results
-            if test == '_' and action in ['A','R']:
-                if action == 'R': print("REJECT")
-                if action == 'A': print('ACCEPT')
-                next
-            if test == '_' and action not in ['A','R']:
-                flow = action
-                next
-            if test != '_' and '<' in test:
-                parameter = test.split("<")[0]
-                value = test.split("<")[1]
-                symbol = '<'
-            if test != '_' and '>' in test:
-                parameter = test.split(">")[0]
-                value = test.split(">")[1]
-                symbol = '>'        
-        # convert the ratings to dictionary to make selecting the parameter easier
-            ratings = {r.split('=')[0]: r.split('=')[1] for r in rating.split(',')}
-        # now select the parameter from the partRatings and compare to the required value
-            val = ratings[parameter]
-            print(parameter, val, symbol, value, flow, action)
-            match symbol:
-                case '>':
-                    if val > value:
-                        flow = action
-                        print('>')
-                        next
-                    else: 
-                        print('!>')
-                        next
-                case '<':
-                    if val < value:
-                        flow = action
-                        print('<')
-                        next
-                    else: 
-                        print('!<')
-                        next
-        print(parameter, val, symbol, value, flow, action)
-
+                if '<' in test:
+                    symbol = '<'
+                    parameter, value = test.split('<')
+                if '>' in test:
+                    symbol = '>'
+                    parameter, value = test.split('>')
+                # perform the comparison and return the result
+                
