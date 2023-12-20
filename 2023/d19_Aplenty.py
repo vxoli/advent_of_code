@@ -15,7 +15,7 @@ def read_url(url):
     blankRow = int(blankRow[0])
     workFlows = data[:blankRow]
     partRatings = data[blankRow+1:]
-    # convert workFlows into a set of workflowName: conditions
+    # convert workFlows into a set of {workflowName: conditions}
     workFlows = [({row.split('{')[0]: row.split('{')[1].strip('}').split(',')}) for row in workFlows]
     # strip { and } from lines of partRatings
     partRatings = [row.strip('{}') for row in partRatings]
