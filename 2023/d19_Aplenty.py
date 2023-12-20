@@ -16,7 +16,7 @@ def read_url(url):
     workFlows = data[:blankRow]
     partRatings = data[blankRow+1:]
     # convert workFlows into a set of {workflowName: conditions}
-    workFlows = [({row.split('{')[0]: row.split('{')[1].strip('}').split(',')}) for row in workFlows]
+    workFlows = {row.split('{')[0]: row.split('{')[1].strip('}').split(',') for row in workFlows}
     # strip { and } from lines of partRatings
     partRatings = [row.strip('{}') for row in partRatings]
         
@@ -26,4 +26,52 @@ def read_url(url):
 # MAIN
 workFlows, partRatings = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d19_input.txt")
 
-
+flow = 'in' # all workFlows start with flow called 'in'
+for rating in partRatings:
+    conditions = workFlows[flow]
+    for condition in conditions:
+        # check if element contains single instruction - this will be either new workflow name or A or R
+        if len(condition.split(':')) == 1:
+            test, action = '_', condition.split(':')[0]
+        else:
+            test = condition.split(':')[0]
+            action = condition.split(':')[1]
+        
+        # now perform test and execute results
+        if test != '_' and '<' in test:
+            parameter = test.split("<")[0]
+            value = test.split("<")[1]
+            symbol = '<'
+        if test != '_' and '>' in test:
+            parameter = test.split(">")[0]
+            value = test.split(">")[1]
+            symbol = '>'
+        if test == '_' and action in ['A','R']:
+            if action == 'R': print("REJECT")
+            if action == 'A': print('ACCEPT')
+            next
+        if test == '_' and action not in ['A','R']:
+            flow = action
+            next
+    # convert the ratings to dictionary to make selecting the parameter easier
+        ratings = {r.split('=')[0]: r.split('=')[1] for r in rating.split(',')}
+    # now select the parameter from the partRatings and compare to the required value
+        val = ratings[parameter]
+        print(parameter, val, symbol, value, flow, action)
+        match symbol:
+            case '>':
+                if val > value:
+                    flow = action
+                    print('>')
+                    next
+                else: 
+                    print('!>')
+                    next
+            case '<':
+                if val < value:
+                    flow = action
+                    print('<')
+                    next
+                else: 
+                    print('!<')
+                    next
