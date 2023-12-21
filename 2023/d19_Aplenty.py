@@ -25,6 +25,8 @@ def read_url(url):
 
 # MAIN
 workFlows, partRatings = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d19_input.txt")
+
+## Part 1
 total = 0
 for rating in partRatings:
     action = ''
@@ -78,4 +80,5 @@ for rating in partRatings:
         total += sum([int(v) for v in ratings.values()])
 
 print("Part 1: What do you get if you add together all of the rating numbers for all of the parts that ultimately get accepted?",total)                
-                
+
+## Part 2
