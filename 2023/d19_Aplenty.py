@@ -25,30 +25,71 @@ def read_url(url):
 
 # MAIN
 workFlows, partRatings = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d19_input.txt")
-action = ''
-flow = 'in' # all workFlows start with flow called 'in'
+
 for rating in partRatings:
+    print("===========================================")
+    action = ''
+    flow = 'in' # all workFlows start with flow called 'in'
     # select the starting conditions
+    i = 0
     while action not in ['A','R']:
         conditions = workFlows[flow]
+        print(conditions)
     # loop through the list of conditions
     # there may be an unconditional branch with no condition - need to deal with that
-        for condition in conditions:
-            if ':' not in condition: # these are the unconditional branches
-                flow = condition # the condition will contain the flow name to branch to -> update the flow
+        condition = conditions[i] # THIS NEEDS TO BECOME A WHILE LOOP SO CONDITIONS CAN BE RESET
+        print(condition)
+        if ':' not in condition: # these are the unconditional branches or A or R
+            print("No : in condition", condition)
+            if condition in ['A','R']:
+                action = condition
+                print("A or R", action)
+                break
             else:
-                # seperate the condition into the parameter to check, the symbol < or > and the value
-                test = condition.split(':')[0]
-                action = condition.split(':')[1]
-                if '<' in test:
-                    symbol = '<'
-                    parameter, value = test.split('<')
-                if '>' in test:
-                    symbol = '>'
-                    parameter, value = test.split('>')
-                # convert the ratings to dictionary to make selecting the parameter easier
-                ratings = {r.split('=')[0]: r.split('=')[1] for r in rating.split(',')}
+                flow = condition # the condition will contain the flow name to branch to -> update the flow
+                i=0
+                print("branch jump to:",flow)
+        else:
+            # seperate the condition into the parameter to check, the symbol < or > and the value
+            test = condition.split(':')[0]
+            action = condition.split(':')[1]
+            if '<' in test:
+                symbol = '<'
+                parameter, specification = test.split('<')
+            if '>' in test:
+                symbol = '>'
+                parameter, specification = test.split('>')
+            # convert the ratings to dictionary to make selecting the parameter easier
+            print(rating)
+            ratings = {r.split('=')[0]: r.split('=')[1] for r in rating.split(',')}
+            # now select the parameter from the partRatings and compare to the required value
+            value = ratings[parameter]
+            print("1",condition, parameter, symbol, specification, value, flow)
+
+            # perform the comparison and return the result
+            if symbol == '<':
+                if int(value) < int(specification): 
+                    flow = action
+                    i=0
+                    print("2",condition, parameter, symbol, specification, value, flow)
+                    print("< jump to:",flow)
+                else: 
+                    print(value,"not <", specification)
+                    i += 1
+                    action = ""
+            if symbol == '>':
+                if int(value) > int(specification): 
+                    flow = action
+                    i=0
+                    print("3",condition, parameter, symbol, specification, value, flow)
+                    print("> jump to:",flow)
+                else: 
+                    print(value,"not >", specification)
+                    i += 1
+                    action = ""
+            print("4",condition, parameter, symbol, specification, value, flow)
+
+    print(action)
                 
-                # perform the comparison and return the result
                 
                 
