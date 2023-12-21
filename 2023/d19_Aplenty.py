@@ -25,30 +25,24 @@ def read_url(url):
 
 # MAIN
 workFlows, partRatings = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d19_input.txt")
-
+total = 0
 for rating in partRatings:
-    print("===========================================")
     action = ''
     flow = 'in' # all workFlows start with flow called 'in'
     # select the starting conditions
     i = 0
     while action not in ['A','R']:
         conditions = workFlows[flow]
-        print(conditions)
     # loop through the list of conditions
     # there may be an unconditional branch with no condition - need to deal with that
         condition = conditions[i] # THIS NEEDS TO BECOME A WHILE LOOP SO CONDITIONS CAN BE RESET
-        print(condition)
         if ':' not in condition: # these are the unconditional branches or A or R
-            print("No : in condition", condition)
             if condition in ['A','R']:
                 action = condition
-                print("A or R", action)
                 break
             else:
                 flow = condition # the condition will contain the flow name to branch to -> update the flow
                 i=0
-                print("branch jump to:",flow)
         else:
             # seperate the condition into the parameter to check, the symbol < or > and the value
             test = condition.split(':')[0]
@@ -60,36 +54,28 @@ for rating in partRatings:
                 symbol = '>'
                 parameter, specification = test.split('>')
             # convert the ratings to dictionary to make selecting the parameter easier
-            print(rating)
             ratings = {r.split('=')[0]: r.split('=')[1] for r in rating.split(',')}
             # now select the parameter from the partRatings and compare to the required value
             value = ratings[parameter]
-            print("1",condition, parameter, symbol, specification, value, flow)
 
             # perform the comparison and return the result
             if symbol == '<':
                 if int(value) < int(specification): 
                     flow = action
                     i=0
-                    print("2",condition, parameter, symbol, specification, value, flow)
-                    print("< jump to:",flow)
                 else: 
-                    print(value,"not <", specification)
                     i += 1
                     action = ""
             if symbol == '>':
                 if int(value) > int(specification): 
                     flow = action
                     i=0
-                    print("3",condition, parameter, symbol, specification, value, flow)
-                    print("> jump to:",flow)
                 else: 
-                    print(value,"not >", specification)
                     i += 1
                     action = ""
-            print("4",condition, parameter, symbol, specification, value, flow)
+            
+    if action == 'A':
+        total += sum([int(v) for v in ratings.values()])
 
-    print(action)
-                
-                
+print("Part 1: What do you get if you add together all of the rating numbers for all of the parts that ultimately get accepted?",total)                
                 
