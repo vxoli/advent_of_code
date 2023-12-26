@@ -17,7 +17,7 @@ def read_data(filename):
 
 ## MAIN
 grid = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d03_input.txt")
-grid = ['467..114..',
+""" grid = ['467..114..',
 '...*......',
 '..35..633.',
 '......#...',
@@ -27,7 +27,7 @@ grid = ['467..114..',
 '......755.',
 '...$.*....',
 '.664.598..']
-
+ """
 cs = set()
 for r, row in enumerate(grid):
     for c,char in enumerate(row):
