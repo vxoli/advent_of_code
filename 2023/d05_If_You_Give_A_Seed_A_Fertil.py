@@ -65,4 +65,3 @@ for row in almanac:
         else:
             sections[mapType] = [row.split(" ")]
 
-    
