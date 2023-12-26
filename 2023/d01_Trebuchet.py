@@ -78,7 +78,6 @@ for line in calibrationDocument:
   first = substrings[0]
   last = substrings[-1]
   final_digit = first*10 + last
-  print(final_digit)
   sum += final_digit
   
 print("Part 2: What is the sum of all of the calibration values?", sum)
