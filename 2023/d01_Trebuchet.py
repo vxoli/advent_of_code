@@ -37,10 +37,10 @@ def find_substrings_with_digits(string):
 # Part 1
 
 calibrationDocument = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d01_input.txt")
-calibrationDocument = ['1abc2',
+""" calibrationDocument = ['1abc2',
 'pqr3stu8vwx',
 'a1b2c3d4e5f',
-'treb7uchet']
+'treb7uchet'] """
 sum = 0
 for line in calibrationDocument:
     digits = ''.join(c for c in line if c.isdigit())
@@ -64,13 +64,13 @@ numberWords = {
   'eight' : 8,
   'nine' : 9
 }
-calibrationDocument = ['two1nine',
+""" calibrationDocument = ['two1nine',
 'eightwothree',
 'abcone2threexyz',
 'xtwone3four',
 '4nineeightseven2',
 'zoneight234',
-'7pqrstsixteen']
+'7pqrstsixteen'] """
 sum = 0
 for line in calibrationDocument:
   numbersInWords = text2int(line)
@@ -82,3 +82,5 @@ for line in calibrationDocument:
   sum += final_digit
   
 print("Part 2: What is the sum of all of the calibration values?", sum)
+
+# thoughts on previous solution - would have worked but had too many numbers in words. sixteen should covert to 6 not 16 for the puzzle to work.
