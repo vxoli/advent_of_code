@@ -9,10 +9,29 @@ def read_url(url):
     data = data.split("\n")
     return data
 
+def get_value_based_on_source_seed(source):
+    source_value = source
+    for m in sections.keys():
+        if m == 'seeds': continue
+        values = sections[m]
+        for value in values:
+            i = [int(x) for x in value]
+            source_interval = range(i[1], i[1]+i[2])
+            if source_value in source_interval:
+                distance = source_value - i[1]
+                source_value = i[0] + distance
+                break
+            else:
+                pass
+    return source_value
+
+ 
+
+
 ## MAIN
 ## Part 1
 almanac = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d05_input.txt")
-almanac = ['seeds: 79 14 55 13',
+"""almanac = ['seeds: 79 14 55 13',
 '',
 'seed-to-soil map:',
 '50 98 2',
@@ -45,7 +64,7 @@ almanac = ['seeds: 79 14 55 13',
 'humidity-to-location map:',
 '60 56 37',
 '56 93 4']
-
+"""
 # data wrangling to split into sections from almanacsections by the headings
 # use the headings as dict keys and store the values in lists
 mapType = ""
@@ -64,4 +83,6 @@ for row in almanac:
             sections[mapType].append(row.split(" "))
         else:
             sections[mapType] = [row.split(" ")]
+final_values = [get_value_based_on_source_seed(seed) for seed in sections['seeds']]
+print(min(final_values))
 
