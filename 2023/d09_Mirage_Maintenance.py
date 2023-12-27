@@ -21,9 +21,8 @@ data = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/202
 for i, line in enumerate(data):
     newline = [eval(x) for x in line.split(" ")]
     data[i] = newline
-
 # PART 1
-# data = [[0, 3, 6, 9, 12, 15,],[1, 3, 6, 10, 15, 21],[10, 13, 16, 21, 30, 45]]
+data = [[0, 3, 6, 9, 12, 15,],[1, 3, 6, 10, 15, 21],[10, 13, 16, 21, 30, 45]]
 total = 0
 for line in data:
     index = 0
