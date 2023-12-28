@@ -16,3 +16,18 @@ def read_data(filename):
     return lines
 
 map = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d13_input.txt")
+map = ['#.##..##.',
+'..#.##.#.',
+'##......#',
+'##......#',
+'..#.##.#.',
+'..##..##.',
+'#.#.##.#.',
+'',
+'#...##..#',
+'#....#..#',
+'..##..###',
+'#####.##.',
+'#####.##.',
+'..##..###',
+'#....#..#']
