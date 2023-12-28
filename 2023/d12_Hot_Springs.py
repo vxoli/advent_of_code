@@ -43,21 +43,14 @@ def arrangements(conditions, groups, memo={}):
     memo[(conditions, groups)] = counts
     return counts
 
-
-    """ if curr ((curr == "#" or curr =="?")
-             and len(conditions) >= size
-             and "." not in conditions[:size]
-             and (size == len(conditions) or conditions[size] != "#")):
-        counts += arrangements(conditions[size+1:], groups[1:])
-     """
 # MAIN
 map = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d12_input.txt")
-map = ['???.### 1,1,3',
+""" map = ['???.### 1,1,3',
 '.??..??...?##. 1,1,3',
 '?#?#?#?#?#?#?#? 1,3,1,6',
 '????.#...#... 4,1,1',
 '????.######..#####. 1,6,5',
-'?###???????? 3,2,1']
+'?###???????? 3,2,1'] """
 lines = []
 answer = 0
 for line in map:
