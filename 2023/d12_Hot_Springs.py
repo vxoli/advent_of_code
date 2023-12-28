@@ -45,16 +45,26 @@ def arrangements(conditions, groups, memo={}):
 
 # MAIN
 map = read_url("https://raw.githubusercontent.com/vxoli/advent_of_code/main/2023/d12_input.txt")
-""" map = ['???.### 1,1,3',
+map = ['???.### 1,1,3',
 '.??..??...?##. 1,1,3',
 '?#?#?#?#?#?#?#? 1,3,1,6',
 '????.#...#... 4,1,1',
 '????.######..#####. 1,6,5',
-'?###???????? 3,2,1'] """
-lines = []
-answer = 0
+'?###???????? 3,2,1']
+# Part 1
+sum = 0
 for line in map:
     conditions, groups = line.split(" ")
     groups = tuple([int(x) for x in groups.split(",")])
-    answer += arrangements(conditions, groups)
-print(answer)
+    sum += arrangements(conditions, groups)
+print("What is the sum of those counts?", sum)
+# Part 2
+sum = 0
+for line in map:
+    unfolded = (line.split(" ")[0]+"?")*5 + " " + (line.split(" ")[1]+",")*5
+    conditions, groups = unfolded.split(" ")
+    conditions = conditions[:-1] #drop the extra ? added when replicated
+    groups = groups[:-1] # drop the extra , added when replicated
+    groups = tuple([int(x) for x in groups.split(",")])
+    sum += arrangements(conditions, groups)
+print("What is the new sum of possible arrangement counts?", sum)
