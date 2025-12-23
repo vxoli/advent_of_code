@@ -4,7 +4,12 @@ def read_data(filename):
     return [line.strip() for line in lines if line.strip()]
 
 def max_joltage_for_bank(bank):
-    """Find the maximum two-digit joltage from a bank of batteries."""
+    """Find the maximum two-digit joltage from a bank of batteries.
+    
+    We need to pick exactly two batteries (digits) where the first appears
+    before the second in the string. The joltage is the two-digit number
+    formed by these digits in order.
+    """
     digits = [int(d) for d in bank]
     n = len(digits)
     
@@ -13,12 +18,11 @@ def max_joltage_for_bank(bank):
     
     max_joltage = 0
     
-    # For each position i (as tens digit), find the max digit after it (as ones digit)
-    for i in range(n - 1):
-        # Find the maximum digit that appears after position i
-        max_ones = max(digits[i + 1:])
-        joltage = digits[i] * 10 + max_ones
-        max_joltage = max(max_joltage, joltage)
+    # Try all possible pairs: first battery at position i, second at position j > i
+    for i in range(n):
+        for j in range(i + 1, n):
+            joltage = digits[i] * 10 + digits[j]
+            max_joltage = max(max_joltage, joltage)
     
     return max_joltage
 
